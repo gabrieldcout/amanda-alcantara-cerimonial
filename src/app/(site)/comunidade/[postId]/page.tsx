@@ -22,7 +22,7 @@ export default async function PostDetailPage({
 
   return (
     <Container className="flex max-w-2xl flex-col gap-8 py-20 sm:py-28">
-      <article className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6">
+      <article className="flex flex-col gap-4 rounded-2xl bg-accent/25 p-6">
         <div className="flex items-center gap-3">
           <MediaImage
             src={post.author.avatarUrl}
@@ -65,7 +65,7 @@ export default async function PostDetailPage({
         </p>
 
         {post.comments.map((comment) => (
-          <div key={comment.id} className="flex gap-3 rounded-xl border border-border bg-card p-4">
+          <div key={comment.id} className="flex gap-3 rounded-xl bg-accent/15 p-4">
             <MediaImage
               src={comment.author.avatarUrl}
               alt={comment.author.name}

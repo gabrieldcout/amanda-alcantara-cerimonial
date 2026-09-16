@@ -5,6 +5,11 @@ export type VideoSource =
   | { kind: "link"; url: string };
 
 export function resolveVideoSource(url: string): VideoSource {
+  // Caminho relativo (ex: /videos/bastidores/foo.mp4) — trata como arquivo direto
+  if (url.startsWith("/") && /\.(mp4|webm|ogg)$/i.test(url)) {
+    return { kind: "file", url };
+  }
+
   try {
     const parsed = new URL(url);
     const host = parsed.hostname.replace(/^www\./, "");

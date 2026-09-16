@@ -42,9 +42,9 @@ export default function HomePage() {
         <img
           src="/fotos/sobre-mim/por-do-sol-caminhando.jpg"
           alt=""
-          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-[0.16] blur-[1px]"
+          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-[0.55] blur-[1px]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/80 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/15 via-background/35 to-background" />
         <Container className="relative flex flex-col items-center gap-6 py-24 text-center sm:py-32">
           <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
             2026 / 2027 — Casamentos
@@ -55,7 +55,7 @@ export default function HomePage() {
           <p className="font-serif-display text-xl italic text-accent-dark sm:text-2xl">
             bem mais que uma assessoria
           </p>
-          <p className="max-w-xl text-lg text-muted-foreground">
+          <p className="max-w-xl text-lg text-foreground">
             Experiências bem construídas não acontecem por acaso. Elas
             nascem da sensibilidade em perceber o que realmente importa, da
             escuta atenta que acolhe desejos, histórias e expectativas, e de
@@ -63,8 +63,8 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="/orcamento">Solicitar orçamento</ButtonLink>
-            <ButtonLink href="/portfolio" variant="outline">
-              Ver portfólio
+            <ButtonLink href="/casais" variant="outline">
+              Ver histórias reais
             </ButtonLink>
           </div>
         </Container>
@@ -72,103 +72,109 @@ export default function HomePage() {
 
 
       {/* Sobre mim */}
-      <section className="py-20 sm:py-28">
-        <Container className="grid gap-10 sm:grid-cols-2 sm:items-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/fotos/sobre-mim/amanda-tablet.jpg"
-            alt="Amanda Alcântara"
-            className="aspect-[4/5] w-full rounded-2xl object-cover"
-          />
-          <div className="flex flex-col gap-5">
-            <SectionHeading eyebrow="Sobre mim" title="Uma paixão que veio de longe" align="left" />
-            <p className="text-muted-foreground leading-relaxed">
-              Sou carioca, esposa do Lucas, mamãe da Ayla e uma mulher
-              apaixonada por celebrar a vida. Desde pequena, o encantamento
-              por festas e comemorações já fazia parte de quem eu sou.
-              Organizar festas e criar momentos especiais sempre foi natural
-              para mim, mas meu caminho inicial foi guiado por outra paixão:
-              o Direito.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Graduada na área e com trajetória sólida em grandes empresas,
-              como L&apos;Oréal Brasil e AMBEV, desenvolvi habilidades como
-              planejamento, organização, liderança e atenção aos detalhes,
-              que hoje são pilares no meu trabalho com eventos.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Hoje minha trajetória combina formação em Direito, MBA em
-              Marketing e especialização técnica em eventos, trazendo uma
-              abordagem estratégica, criativa e detalhista para cada evento
-              que eu assessoro.
-            </p>
+      <section className="py-14 sm:py-20">
+        <Container>
+          <div className="grid gap-8 rounded-3xl bg-accent/25 p-6 sm:grid-cols-2 sm:items-center sm:gap-10 sm:p-10 lg:p-14">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/fotos/sobre-mim/amanda-poltrona.jpg"
+              alt="Amanda Alcântara"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+            />
+            <div className="flex flex-col gap-5">
+              <SectionHeading eyebrow="Sobre mim" title="Uma paixão que veio de longe" align="left" />
+              <p className="text-muted-foreground leading-relaxed">
+                Sou carioca, esposa do Lucas, mamãe da Ayla e uma mulher
+                apaixonada por celebrar a vida. Desde pequena, o encantamento
+                por festas e comemorações já fazia parte de quem eu sou.
+                Organizar festas e criar momentos especiais sempre foi natural
+                para mim, mas meu caminho inicial foi guiado por outra paixão:
+                o Direito.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Graduada na área e com trajetória sólida em grandes empresas,
+                como L&apos;Oréal Brasil e AMBEV, desenvolvi habilidades como
+                planejamento, organização, liderança e atenção aos detalhes,
+                que hoje são pilares no meu trabalho com eventos.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Hoje minha trajetória combina formação em Direito, MBA em
+                Marketing e especialização técnica em eventos, trazendo uma
+                abordagem estratégica, criativa e detalhista para cada evento
+                que eu assessoro.
+              </p>
+            </div>
           </div>
         </Container>
       </section>
 
       {/* O meu compromisso */}
-      <section className="bg-muted/40 py-20 sm:py-28">
-        <Container className="grid gap-8 sm:grid-cols-2 sm:items-center">
-          <div className="grid grid-cols-2 gap-4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/fotos/sobre-mim/casal-cerimonia-1.jpg"
-              alt="Casal no dia do casamento"
-              className="aspect-[3/4] w-full rounded-2xl object-cover"
-            />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/fotos/sobre-mim/casal-cerimonia-2.jpg"
-              alt="Casal se abraçando ao entardecer"
-              className="mt-8 aspect-[3/4] w-full rounded-2xl object-cover"
-            />
-          </div>
-          <div className="flex flex-col gap-5">
-            <SectionHeading
-              eyebrow="O meu compromisso"
-              title="Que vocês sejam protagonistas da própria história"
-              align="left"
-            />
-            <p className="text-muted-foreground leading-relaxed">
-              É transformar o planejamento em uma experiência tranquila e
-              inspiradora, onde o casal se sinta acolhido, confiante e
-              verdadeiramente protagonista da própria história. Com uma
-              assessoria completa, integro todos os aspectos do evento:
-              planejamento, curadoria de fornecedores, gestão de prazos e
-              contratos, construção de cronogramas e coordenação total do
-              grande dia — garantindo harmonia entre o sonho e a execução.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              O resultado é um casamento que reflete quem vocês são:
-              autêntico, memorável e feliz.
-            </p>
+      <section className="py-14 sm:py-20">
+        <Container>
+          <div className="grid gap-8 rounded-3xl bg-accent/25 p-6 sm:grid-cols-2 sm:items-center sm:p-10 lg:p-14">
+            <div className="grid grid-cols-2 gap-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/fotos/sobre-mim/casal-cerimonia-1.jpg"
+                alt="Casal no dia do casamento"
+                className="aspect-[3/4] w-full rounded-2xl object-cover"
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/fotos/sobre-mim/casal-cerimonia-2.jpg"
+                alt="Casal se abraçando ao entardecer"
+                className="mt-8 aspect-[3/4] w-full rounded-2xl object-cover"
+              />
+            </div>
+            <div className="flex flex-col gap-5">
+              <SectionHeading
+                eyebrow="O meu compromisso"
+                title="Que vocês sejam protagonistas da própria história"
+                align="left"
+              />
+              <p className="text-muted-foreground leading-relaxed">
+                É transformar o planejamento em uma experiência tranquila e
+                inspiradora, onde o casal se sinta acolhido, confiante e
+                verdadeiramente protagonista da própria história. Com uma
+                assessoria completa, integro todos os aspectos do evento:
+                planejamento, curadoria de fornecedores, gestão de prazos e
+                contratos, construção de cronogramas e coordenação total do
+                grande dia — garantindo harmonia entre o sonho e a execução.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                O resultado é um casamento que reflete quem vocês são:
+                autêntico, memorável e feliz.
+              </p>
+            </div>
           </div>
         </Container>
       </section>
 
       {/* Sobre a minha assessoria */}
-      <section className="py-20 sm:py-28">
-        <Container className="flex flex-col gap-10">
-          <SectionHeading
-            eyebrow="Sobre a minha assessoria"
-            title="Acompanhamento personalizado em cada etapa"
-            subtitle="Cada reunião, cada escolha e cada decisão são conduzidas de forma estratégica e sensível, respeitando a essência e os desejos de vocês. Mais do que organizar, meu papel é orientar, simplificar processos e trazer segurança em cada passo."
-          />
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {[
-              { src: "/fotos/sobre-mim/mesa-posta.jpg", alt: "Mesa posta com detalhes" },
-              { src: "/fotos/sobre-mim/criancas-girassois.jpg", alt: "Pajens com girassóis" },
-              { src: "/fotos/sobre-mim/ajustando-vestido-janela.jpg", alt: "Ajustando o vestido da noiva" },
-              { src: "/fotos/sobre-mim/noiva-madrinha-noite.jpg", alt: "Noiva e madrinha à noite" },
-            ].map((img) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                key={img.src}
-                src={img.src}
-                alt={img.alt}
-                className="aspect-[3/4] w-full rounded-xl object-cover"
-              />
-            ))}
+      <section className="py-14 sm:py-20">
+        <Container>
+          <div className="flex flex-col gap-10 rounded-3xl bg-accent/25 p-6 sm:p-10 lg:p-14">
+            <SectionHeading
+              eyebrow="Sobre a minha assessoria"
+              title="Acompanhamento personalizado em cada etapa"
+              subtitle="Cada reunião, cada escolha e cada decisão são conduzidas de forma estratégica e sensível, respeitando a essência e os desejos de vocês. Mais do que organizar, meu papel é orientar, simplificar processos e trazer segurança em cada passo."
+            />
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {[
+                { src: "/fotos/sobre-mim/mesa-posta.jpg", alt: "Mesa posta com detalhes" },
+                { src: "/fotos/sobre-mim/criancas-girassois.jpg", alt: "Pajens com girassóis" },
+                { src: "/fotos/sobre-mim/ajustando-vestido-janela.jpg", alt: "Ajustando o vestido da noiva" },
+                { src: "/fotos/sobre-mim/noiva-madrinha-noite.jpg", alt: "Noiva e madrinha à noite" },
+              ].map((img) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={img.src}
+                  src={img.src}
+                  alt={img.alt}
+                  className="aspect-[3/4] w-full rounded-xl object-cover"
+                />
+              ))}
+            </div>
           </div>
         </Container>
       </section>

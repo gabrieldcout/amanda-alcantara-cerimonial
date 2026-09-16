@@ -158,7 +158,7 @@ export default function CronogramaContratacaoPage() {
                   {index + 1}
                 </span>
               </div>
-              <div className="flex flex-1 flex-col gap-4 rounded-2xl border border-border bg-card p-6 sm:p-8">
+              <div className="flex flex-1 flex-col gap-4 rounded-2xl bg-accent/25 p-6 sm:p-8">
                 <div className="flex flex-col gap-1">
                   <h2 className="font-serif-display text-xl text-foreground">
                     {phase.period}

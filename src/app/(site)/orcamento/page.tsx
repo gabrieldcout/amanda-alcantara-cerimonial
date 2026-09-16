@@ -21,13 +21,15 @@ export default async function OrcamentoPage() {
   }));
 
   return (
-    <Container className="flex flex-col gap-12 py-20 sm:py-28">
-      <SectionHeading
-        eyebrow="Orçamento"
-        title="Vamos planejar o seu evento"
-        subtitle="Preencha os dados abaixo e consulte as datas disponíveis na agenda. Retornaremos em breve com uma proposta personalizada."
-      />
-      <QuoteForm availability={availability} />
+    <Container className="py-20 sm:py-28">
+      <div className="flex flex-col gap-12 rounded-3xl bg-accent/25 p-6 sm:p-10 lg:p-14">
+        <SectionHeading
+          eyebrow="Orçamento"
+          title="Vamos planejar o seu evento"
+          subtitle="Preencha os dados abaixo e consulte as datas disponíveis na agenda. Retornaremos em breve com uma proposta personalizada."
+        />
+        <QuoteForm availability={availability} />
+      </div>
     </Container>
   );
 }

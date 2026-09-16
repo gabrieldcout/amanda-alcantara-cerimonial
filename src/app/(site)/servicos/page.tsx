@@ -207,7 +207,7 @@ export default function ServicosPage() {
           {SERVICE_GROUPS.map((group) => (
             <div
               key={group.title}
-              className="flex flex-col gap-5 rounded-2xl border border-border bg-card p-6 sm:p-8"
+              className="flex flex-col gap-5 rounded-2xl bg-accent/25 p-6 sm:p-8"
             >
               <h2 className="font-serif-display text-xl text-foreground">
                 {group.title}

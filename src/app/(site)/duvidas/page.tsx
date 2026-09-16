@@ -63,7 +63,7 @@ export default function DuvidasPage() {
         {FAQ.map((item) => (
           <details
             key={item.q}
-            className="group rounded-2xl border border-border bg-card p-5 transition-colors open:border-accent/40 open:bg-accent/5"
+            className="group rounded-2xl bg-accent/25 p-5 transition-colors open:bg-accent/35"
           >
             <summary className="flex cursor-pointer items-start justify-between gap-4 list-none [&::-webkit-details-marker]:hidden">
               <span className="font-serif-display text-lg text-foreground">

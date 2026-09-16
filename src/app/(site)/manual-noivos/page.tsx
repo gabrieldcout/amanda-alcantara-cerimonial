@@ -108,7 +108,7 @@ export default function ManualNoivosPage() {
         {SECTIONS.map((section) => (
           <section
             key={section.title}
-            className={`grid gap-10 sm:grid-cols-2 sm:items-center ${
+            className={`grid gap-8 rounded-3xl bg-accent/25 p-6 sm:grid-cols-2 sm:items-center sm:gap-10 sm:p-10 lg:p-14 ${
               section.reverse ? "sm:[&>*:first-child]:order-2" : ""
             }`}
           >

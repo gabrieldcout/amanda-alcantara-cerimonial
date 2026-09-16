@@ -14,7 +14,7 @@ export function BrideSignupForm() {
   return (
     <form
       action={formAction}
-      className="flex w-full max-w-sm flex-col gap-4 rounded-2xl border border-border bg-card p-8"
+      className="flex w-full max-w-sm flex-col gap-4 rounded-2xl bg-accent/25 p-8"
     >
       <div>
         <p className="font-serif-display text-2xl text-foreground">Criar conta</p>
