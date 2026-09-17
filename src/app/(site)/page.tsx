@@ -185,7 +185,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Como te acompanho"
             title="Do primeiro encontro ao pós-evento"
-            titleClassName="text-accent-dark"
+            titleClassName="text-accent"
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {ASSESSORIA_CARDS.map((card) => (
@@ -193,10 +193,10 @@ export default function HomePage() {
                 key={card.title}
                 className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6"
               >
-                <h3 className="font-serif-display text-lg text-foreground">
+                <h3 className="font-serif-display text-lg text-accent-dark">
                   {card.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className="text-sm leading-relaxed text-accent-dark">
                   {card.text}
                 </p>
               </div>
