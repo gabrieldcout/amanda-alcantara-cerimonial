@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { href: "/manual-noivos", label: "Manual dos Noivos" },
   { href: "/cronograma-contratacao", label: "Cronograma de Contratação" },
   { href: "/servicos", label: "O que inclui" },
+  { href: "/portfolio", label: "Portfólio" },
   { href: "/casais", label: "Histórias reais" },
   { href: "/bastidores", label: "Bastidores" },
   { href: "/comunidade", label: "Comunidade Noivas AA" },

@@ -12,7 +12,8 @@
     "db:studio": "prisma studio",
     "db:seed": "node prisma/seed.js",
     "db:seed-community": "node scripts/seed-community.js",
-    "db:seed-all": "node prisma/seed.js && node scripts/seed-community.js && node scripts/seed-photos.js && node scripts/seed-more-content.js && node scripts/seed-team-avatars.js",
+    "db:seed-portfolio": "node scripts/seed-portfolio.js",
+    "db:seed-all": "node prisma/seed.js && node scripts/seed-community.js && node scripts/seed-photos.js && node scripts/seed-more-content.js && node scripts/seed-team-avatars.js && node scripts/seed-portfolio.js",
     "hash-password": "node scripts/hash-password.js"
   },
   "prisma": {
