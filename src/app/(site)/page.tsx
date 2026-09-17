@@ -25,6 +25,45 @@ const ASSESSORIA_CARDS = [
   },
 ];
 
+const DESTAQUES = [
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+        <path d="M12 21s-6.7-4.35-9.33-8.2C.87 10.2 1.4 6.9 4.1 5.2c2.2-1.4 4.9-.8 6.5 1.1L12 7.9l1.4-1.6c1.6-1.9 4.3-2.5 6.5-1.1 2.7 1.7 3.23 5 1.43 7.6C18.7 16.65 12 21 12 21Z" />
+      </svg>
+    ),
+    stat: "+20",
+    label: "Casamentos realizados",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+        <path d="M12 2 2 7l10 5 10-5-10-5Zm0 7L2 14l10 5 10-5-10-5Z" />
+      </svg>
+    ),
+    stat: "100%",
+    label: "Atendimento personalizado",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+        <path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm-8 0a3.5 3.5 0 1 0-3.5-3.5A3.5 3.5 0 0 0 8 11Zm0 2c-2.67 0-8 1.34-8 4v3h9.28A5.98 5.98 0 0 1 9 16c0-1.5.53-2.88 1.4-4A11.6 11.6 0 0 0 8 13Zm8 0c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4Z" />
+      </svg>
+    ),
+    stat: "Equipe própria",
+    label: "Presente no grande dia",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+        <path d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2Zm12 8v10H5V10Zm-9.6 7.6 4.9-4.9-1.4-1.4-3.5 3.5-1.5-1.5-1.4 1.4Z" />
+      </svg>
+    ),
+    stat: "Do início ao fim",
+    label: "Acompanhamento completo",
+  },
+];
+
 const VOCE_SE_IDENTIFICA = [
   "Você nunca organizou um evento desse porte antes e está com medo de esquecer algo importante ou cometer erros por falta de experiência.",
   "Você trabalha, estuda ou tem a agenda cheia e falta tempo para cuidar de tudo com calma.",
@@ -223,6 +262,30 @@ export default function HomePage() {
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {text}
                 </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Destaques */}
+      <section className="py-20 sm:py-28">
+        <Container>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {DESTAQUES.map((item) => (
+              <div
+                key={item.label}
+                className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/15 text-accent-dark">
+                  {item.icon}
+                </span>
+                <span className="font-serif-display text-2xl font-bold text-black">
+                  {item.stat}
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  {item.label}
+                </span>
               </div>
             ))}
           </div>
