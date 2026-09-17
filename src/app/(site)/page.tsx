@@ -185,7 +185,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Como te acompanho"
             title="Do primeiro encontro ao pós-evento"
-            titleClassName="text-accent"
+            titleClassName="text-accent-dark"
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {ASSESSORIA_CARDS.map((card) => (
