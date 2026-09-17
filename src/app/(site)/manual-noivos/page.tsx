@@ -41,7 +41,7 @@ const SECTIONS: {
     alt: "Espaço de casamento ao ar livre",
     paragraphs: [
       "Na escolha do local, é fundamental considerar fatores estratégicos que impactam diretamente a experiência do evento: a capacidade do espaço, a estrutura oferecida e a existência de um plano B para eventos ao ar livre, assegurando tranquilidade em caso de mudanças climáticas.",
-      "A logística de acesso — localização, estacionamento e facilidade de deslocamento — contribui para a comodidade dos convidados, assim como os horários permitidos para montagem, realização da festa e encerramento.",
+      "A logística de acesso (localização, estacionamento e facilidade de deslocamento) contribui para a comodidade dos convidados, assim como os horários permitidos para montagem, realização da festa e encerramento.",
       "Por se tratar de um dos itens mais disputados no planejamento, o ideal é realizar a reserva do espaço com antecedência de 12 a 18 meses, garantindo maior disponibilidade de datas e melhores possibilidades de negociação.",
     ],
   },
@@ -62,8 +62,8 @@ const SECTIONS: {
     alt: "Casal ao entardecer",
     paragraphs: [
       "O roteiro do grande dia é responsável por organizar a sequência dos acontecimentos e garantir que o casamento aconteça de forma fluida, leve e bem coordenada, permitindo que os noivos aproveitem cada momento com tranquilidade.",
-      "O dia geralmente se inicia com o making of dos noivos, seguido da chegada dos convidados e do início da cerimônia — o ponto mais emocionante da celebração. Depois vêm as fotos protocolares, o welcome drink, a entrada oficial no salão, o brinde, o jantar e a abertura da pista de dança.",
-      "Este roteiro serve como uma referência base, podendo — e devendo — ser personalizado de acordo com o perfil, os desejos e o estilo de cada casal.",
+      "O dia geralmente se inicia com o making of dos noivos, seguido da chegada dos convidados e do início da cerimônia, o ponto mais emocionante da celebração. Depois vêm as fotos protocolares, o welcome drink, a entrada oficial no salão, o brinde, o jantar e a abertura da pista de dança.",
+      "Este roteiro serve como uma referência base, podendo e devendo ser personalizado de acordo com o perfil, os desejos e o estilo de cada casal.",
     ],
   },
   {

@@ -7,7 +7,7 @@ const MORE_TESTIMONIALS = [
     clientName: "Renata & Thiago",
     eventType: "Casamento",
     quote:
-      "A Amanda transformou o que seria um caos de última hora em um dia tranquilo. Confiamos cegamente e não foi à toa — cada detalhe saiu exatamente como planejado.",
+      "A Amanda transformou o que seria um caos de última hora em um dia tranquilo. Confiamos cegamente e não foi à toa: cada detalhe saiu exatamente como planejado.",
     rating: 5,
   },
   {

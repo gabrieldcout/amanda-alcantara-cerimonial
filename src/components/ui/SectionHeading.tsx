@@ -3,11 +3,13 @@ export function SectionHeading({
   title,
   subtitle,
   align = "center",
+  titleClassName = "text-foreground",
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   align?: "center" | "left";
+  titleClassName?: string;
 }) {
   const alignment = align === "center" ? "text-center items-center" : "text-left items-start";
   return (
@@ -17,7 +19,7 @@ export function SectionHeading({
           {eyebrow}
         </span>
       )}
-      <h2 className="font-serif-display text-3xl sm:text-4xl text-foreground">
+      <h2 className={`font-serif-display text-3xl sm:text-4xl ${titleClassName}`}>
         {title}
       </h2>
       {subtitle && (

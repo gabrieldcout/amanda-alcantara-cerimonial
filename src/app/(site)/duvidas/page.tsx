@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 const FAQ = [
   {
     q: "Quando é o melhor momento para contratar a assessoria?",
-    a: "O ideal é contratar entre 10 e 12 meses antes do evento — isso dá tempo pra planejar tudo com calma, encontrar os melhores fornecedores nas datas desejadas e evitar decisões apressadas. Mas também atendo casais com prazos mais curtos, adaptando o cronograma pra cada caso.",
+    a: "O ideal é contratar entre 10 e 12 meses antes do evento: isso dá tempo pra planejar tudo com calma, encontrar os melhores fornecedores nas datas desejadas e evitar decisões apressadas. Mas também atendo casais com prazos mais curtos, adaptando o cronograma pra cada caso.",
   },
   {
     q: "Qual é a diferença entre assessoria completa e coordenação do dia?",
-    a: "A assessoria completa acompanha todo o planejamento — desde a escolha de fornecedores até o pós-evento. A coordenação do dia é focada só na execução (dia da festa), quando o casal já organizou tudo por conta própria e quer suporte apenas no grande dia.",
+    a: "A assessoria completa acompanha todo o planejamento, desde a escolha de fornecedores até o pós-evento. A coordenação do dia é focada só na execução (dia da festa), quando o casal já organizou tudo por conta própria e quer suporte apenas no grande dia.",
   },
   {
     q: "O que está incluído no serviço de assessoria completa?",
@@ -34,7 +34,7 @@ const FAQ = [
   },
   {
     q: "Vocês indicam fornecedores? Recebem comissão?",
-    a: "Indico fornecedores baseado em experiência e no perfil de cada casal — todos previamente validados. Não trabalho com comissão de fornecedores: minha receita vem exclusivamente do casal, o que garante que as indicações sejam sempre no seu melhor interesse.",
+    a: "Indico fornecedores baseado em experiência e no perfil de cada casal, todos previamente validados. Não trabalho com comissão de fornecedores: minha receita vem exclusivamente do casal, o que garante que as indicações sejam sempre no seu melhor interesse.",
   },
   {
     q: "Como é feito o pagamento? Posso parcelar?",
@@ -42,7 +42,7 @@ const FAQ = [
   },
   {
     q: "Trabalham com casamentos de qualquer porte?",
-    a: "Sim, de intimistas (até 40 pessoas) a grandes celebrações. O que importa é o seu sonho — o que muda é o dimensionamento da equipe e do escopo, sempre pensado sob medida.",
+    a: "Sim, de intimistas (até 40 pessoas) a grandes celebrações. O que importa é o seu sonho; o que muda é o dimensionamento da equipe e do escopo, sempre pensado sob medida.",
   },
   {
     q: "E se algo der errado no dia do evento?",
@@ -56,7 +56,7 @@ export default function DuvidasPage() {
       <SectionHeading
         eyebrow="Dúvidas Frequentes"
         title="Tudo o que você precisa saber antes de contratar"
-        subtitle="Se restou alguma dúvida, é só chamar no WhatsApp ou solicitar um orçamento — vou te responder pessoalmente."
+        subtitle="Se restou alguma dúvida, é só chamar no WhatsApp ou solicitar um orçamento, vou te responder pessoalmente."
       />
 
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-3">

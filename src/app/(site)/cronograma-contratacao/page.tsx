@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const PHASES = [
   {
     period: "12 a 18 meses antes",
-    tag: "Fase estratégica — decisões mais importantes",
+    tag: "Fase estratégica: decisões mais importantes",
     note: "Esses são os primeiros porque tudo depende deles.",
     items: [
       "Definição da data",
@@ -31,7 +31,7 @@ const PHASES = [
       "Filmagem",
       "Decoração (empresa ou decorador)",
       "Banda ou DJ principal",
-      "Mobiliário (mesas, cadeiras, lounges — se necessário)",
+      "Mobiliário (mesas, cadeiras, lounges, se necessário)",
       "Identidade visual (convites, papelaria)",
     ],
   },

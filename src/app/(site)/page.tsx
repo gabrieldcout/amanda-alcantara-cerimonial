@@ -28,7 +28,7 @@ const ASSESSORIA_CARDS = [
 const VOCE_SE_IDENTIFICA = [
   "Você nunca organizou um evento desse porte antes e está com medo de esquecer algo importante ou cometer erros por falta de experiência.",
   "Você trabalha, estuda ou tem a agenda cheia e falta tempo para cuidar de tudo com calma.",
-  "Você não sabe por onde começar — local, buffet, decoração, DJ, convite, cerimonial — e só de pensar dá um nó na cabeça.",
+  "Você não sabe por onde começar, local, buffet, decoração, DJ, convite, cerimonial, e só de pensar dá um nó na cabeça.",
   "Você quer curtir o seu evento sem preocupações e, no dia da festa, viver cada momento sem se preocupar com cronograma, fornecedores ou imprevistos.",
   "Você valoriza um evento bem organizado, bonito, com emoção, e sonha com uma celebração fluida, elegante, sem correria.",
 ];
@@ -47,7 +47,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/15 via-background/35 to-background" />
         <Container className="relative flex flex-col items-center gap-6 py-24 text-center sm:py-32">
           <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-            2026 / 2027 — Casamentos
+            Assessoria Cerimonial
           </span>
           <h1 className="max-w-3xl font-serif-display text-4xl leading-tight text-foreground sm:text-6xl">
             Amanda Alcântara
@@ -139,7 +139,7 @@ export default function HomePage() {
                 assessoria completa, integro todos os aspectos do evento:
                 planejamento, curadoria de fornecedores, gestão de prazos e
                 contratos, construção de cronogramas e coordenação total do
-                grande dia — garantindo harmonia entre o sonho e a execução.
+                grande dia, garantindo harmonia entre o sonho e a execução.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 O resultado é um casamento que reflete quem vocês são:
@@ -185,6 +185,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Como te acompanho"
             title="Do primeiro encontro ao pós-evento"
+            titleClassName="text-accent"
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {ASSESSORIA_CARDS.map((card) => (

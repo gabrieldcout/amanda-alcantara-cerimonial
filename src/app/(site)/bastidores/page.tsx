@@ -31,7 +31,7 @@ export default async function BastidoresPage() {
           O que acontece por trás de cada evento
         </h1>
         <p className="mx-auto max-w-[560px] text-muted-foreground [text-wrap:balance]">
-          Registros dos momentos que ninguém vê — a preparação, a equipe em
+          Registros dos momentos que ninguém vê: a preparação, a equipe em
           ação, o cuidado com cada detalhe.
         </p>
       </div>
