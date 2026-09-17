@@ -160,7 +160,7 @@ export default function HomePage() {
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/fotos/sobre-mim/casal-cerimonia-2.jpg"
+                src="/fotos/sobre-mim/casal-beijo-noite.jpg"
                 alt="Casal se abraçando ao entardecer"
                 className="mt-8 aspect-[3/4] w-full rounded-2xl object-cover"
               />
