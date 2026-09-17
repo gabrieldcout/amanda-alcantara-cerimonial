@@ -3,34 +3,52 @@ const prisma = new PrismaClient();
 
 const ITEMS = [
   {
+    type: "video",
+    url: "/videos/bastidores/bastidor-1.mp4",
+    caption: "Bastidores do grande dia",
+    order: 0,
+  },
+  {
+    type: "video",
+    url: "/videos/bastidores/bastidor-2.mp4",
+    caption: "Bastidores do grande dia",
+    order: 1,
+  },
+  {
+    type: "video",
+    url: "/videos/bastidores/bastidor-3.mp4",
+    caption: "Bastidores do grande dia",
+    order: 2,
+  },
+  {
     type: "photo",
     url: "/fotos/amanda/com-noiva-rosas.jpg",
     caption: "Antes da cerimônia · Um brinde entre risadas",
-    order: 0,
+    order: 3,
   },
   {
     type: "photo",
     url: "/fotos/sobre-mim/amanda-tablet.jpg",
     caption: "Nos bastidores · Ajustando cada detalhe",
-    order: 1,
+    order: 4,
   },
   {
     type: "photo",
     url: "/fotos/sobre-mim/amanda-planejamento.jpg",
     caption: "Reunião de planejamento",
-    order: 2,
+    order: 5,
   },
   {
     type: "photo",
     url: "/fotos/casal-3/com-amanda-noite.jpg",
     caption: "No grande dia · Ao lado da noiva",
-    order: 3,
+    order: 6,
   },
   {
     type: "photo",
     url: "/fotos/amanda/direcionando.jpg",
     caption: "Direcionando cada momento",
-    order: 4,
+    order: 7,
   },
 ];
 
