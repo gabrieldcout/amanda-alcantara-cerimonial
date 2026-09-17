@@ -121,7 +121,7 @@ export default function HomePage() {
               className="aspect-[4/5] w-full rounded-2xl object-cover"
             />
             <div className="flex flex-col gap-5">
-              <SectionHeading eyebrow="Sobre mim" title="Uma paixão que veio de longe" align="left" />
+              <SectionHeading eyebrow="Sobre mim" title="A paixão que se tornou profissão" align="left" />
               <p className="text-muted-foreground leading-relaxed">
                 Sou carioca, esposa do Lucas, mamãe da Ayla e uma mulher
                 apaixonada por celebrar a vida. Desde pequena, o encantamento
