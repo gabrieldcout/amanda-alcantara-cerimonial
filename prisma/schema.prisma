@@ -86,6 +86,7 @@ model SiteSettings {
   heroSubtitle   String  @db.Text
   aboutText      String  @db.Text
   instagramUrl   String?
+  tiktokUrl      String?
   whatsappNumber String?
   email          String?
 }

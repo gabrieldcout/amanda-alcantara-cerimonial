@@ -5,6 +5,7 @@ import Link from "next/link";
 import { loginAction } from "@/lib/actions/brideAuth";
 import type { BrideAuthState } from "@/lib/actions/brideAuth";
 import { Button } from "@/components/ui/Button";
+import { PasswordInput } from "@/components/ui/PasswordInput";
 
 const initialState: BrideAuthState = {};
 
@@ -27,7 +28,7 @@ export function BrideLoginForm() {
       </label>
       <label className="flex flex-col gap-1.5 text-sm">
         <span className="font-medium text-foreground">Senha</span>
-        <input name="password" type="password" required className="input" />
+        <PasswordInput name="password" required className="input" />
       </label>
 
       {state.error && <p className="text-sm text-red-600">{state.error}</p>}

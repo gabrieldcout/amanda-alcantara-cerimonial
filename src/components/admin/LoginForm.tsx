@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { loginAction, type LoginState } from "@/lib/actions/auth";
 import { Button } from "@/components/ui/Button";
 import { AdminField } from "@/components/admin/AdminField";
+import { PasswordInput } from "@/components/ui/PasswordInput";
 
 const initialState: LoginState = {};
 
@@ -27,7 +28,7 @@ export function LoginForm({ next }: { next: string }) {
           <input name="email" type="email" required className="input" />
         </AdminField>
         <AdminField label="Senha" name="password">
-          <input name="password" type="password" required className="input" />
+          <PasswordInput name="password" required className="input" />
         </AdminField>
       </div>
 

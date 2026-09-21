@@ -18,11 +18,13 @@ const NAV_LINKS = [
 export function Footer({
   siteName,
   instagramUrl,
+  tiktokUrl,
   whatsappNumber,
   email,
 }: {
   siteName: string;
   instagramUrl?: string | null;
+  tiktokUrl?: string | null;
   whatsappNumber?: string | null;
   email?: string | null;
 }) {
@@ -71,6 +73,18 @@ export function Footer({
                   className="hover:text-accent"
                 >
                   Instagram
+                </a>
+              </li>
+            )}
+            {tiktokUrl && (
+              <li>
+                <a
+                  href={tiktokUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent"
+                >
+                  TikTok
                 </a>
               </li>
             )}

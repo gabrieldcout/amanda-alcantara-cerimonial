@@ -104,6 +104,7 @@ export const siteSettingsSchema = z.object({
   heroSubtitle: z.string().trim().min(1),
   aboutText: z.string().trim().min(1),
   instagramUrl: z.string().trim().optional().or(z.literal("")),
+  tiktokUrl: z.string().trim().optional().or(z.literal("")),
   whatsappNumber: z.string().trim().optional().or(z.literal("")),
   email: z.string().trim().optional().or(z.literal("")),
 });

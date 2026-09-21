@@ -7,6 +7,7 @@ export const DEFAULT_SETTINGS = {
   aboutText:
     "Cuido de cada detalhe da sua cerimônia com carinho, organização e experiência, para que você viva o seu grande dia com leveza, do planejamento ao último brinde.",
   instagramUrl: "https://instagram.com/aamandacerimonial",
+  tiktokUrl: "https://www.tiktok.com/@aamanda.cerimoniall",
   whatsappNumber: "+55 48 8444-8087",
   email: "",
 };

@@ -31,6 +31,7 @@ export default async function SiteLayout({
         <Footer
           siteName={settings.heroTitle}
           instagramUrl={settings.instagramUrl}
+          tiktokUrl={settings.tiktokUrl}
           whatsappNumber={settings.whatsappNumber}
           email={settings.email}
         />

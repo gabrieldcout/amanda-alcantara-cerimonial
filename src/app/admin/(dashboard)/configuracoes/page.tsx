@@ -55,6 +55,14 @@ export default async function AdminConfiguracoesPage() {
             className="input"
           />
         </AdminField>
+        <AdminField label="Link do TikTok" name="tiktokUrl">
+          <input
+            name="tiktokUrl"
+            defaultValue={settings.tiktokUrl ?? ""}
+            placeholder="https://tiktok.com/@..."
+            className="input"
+          />
+        </AdminField>
         <AdminField label="WhatsApp (apenas números, com DDI e DDD)" name="whatsappNumber">
           <input
             name="whatsappNumber"

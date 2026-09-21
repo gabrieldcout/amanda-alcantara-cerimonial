@@ -12,6 +12,7 @@ export async function updateSiteSettings(formData: FormData) {
     heroSubtitle: formData.get("heroSubtitle"),
     aboutText: formData.get("aboutText"),
     instagramUrl: formData.get("instagramUrl"),
+    tiktokUrl: formData.get("tiktokUrl"),
     whatsappNumber: formData.get("whatsappNumber"),
     email: formData.get("email"),
   });
@@ -21,6 +22,7 @@ export async function updateSiteSettings(formData: FormData) {
     update: {
       ...data,
       instagramUrl: data.instagramUrl || null,
+      tiktokUrl: data.tiktokUrl || null,
       whatsappNumber: data.whatsappNumber || null,
       email: data.email || null,
     },
@@ -28,6 +30,7 @@ export async function updateSiteSettings(formData: FormData) {
       id: 1,
       ...data,
       instagramUrl: data.instagramUrl || null,
+      tiktokUrl: data.tiktokUrl || null,
       whatsappNumber: data.whatsappNumber || null,
       email: data.email || null,
     },
