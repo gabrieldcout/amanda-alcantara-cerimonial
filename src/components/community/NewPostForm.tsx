@@ -27,12 +27,6 @@ export function NewPostForm() {
         placeholder="Compartilhe algo com a comunidade..."
         className="input resize-none"
       />
-      <input
-        name="imageUrl"
-        type="text"
-        placeholder="URL de uma foto (opcional)"
-        className="input"
-      />
 
       {state.error && <p className="text-sm text-red-600">{state.error}</p>}
       {state.success && (
