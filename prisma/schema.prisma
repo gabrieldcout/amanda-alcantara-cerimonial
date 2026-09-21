@@ -98,6 +98,8 @@ model BrideUser {
   name         String
   email        String   @unique
   passwordHash String
+  cpf          String
+  birthDate    DateTime
   avatarUrl    String?  @db.Text
   banned       Boolean  @default(false)
   createdAt    DateTime @default(now())

@@ -37,6 +37,15 @@ export function BrideLoginForm() {
         {isPending ? "Entrando..." : "Entrar"}
       </Button>
 
+      <p className="text-center text-sm">
+        <Link
+          href="/comunidade/recuperar-senha"
+          className="text-accent hover:underline"
+        >
+          Esqueci minha senha
+        </Link>
+      </p>
+
       <p className="text-center text-sm text-muted-foreground">
         Ainda não tem conta?{" "}
         <Link href="/comunidade/cadastro" className="text-accent hover:underline">

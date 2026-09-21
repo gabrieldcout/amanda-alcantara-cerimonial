@@ -1,14 +1,34 @@
 import { z } from "zod";
 
+const cpfSchema = z
+  .string()
+  .trim()
+  .transform((v) => v.replace(/\D/g, ""))
+  .refine((v) => v.length === 11, "CPF precisa ter 11 dígitos");
+
+const birthDateSchema = z
+  .string()
+  .trim()
+  .refine((v) => /^\d{4}-\d{2}-\d{2}$/.test(v), "Data inválida");
+
 export const brideSignupSchema = z.object({
   name: z.string().trim().min(2, "Informe seu nome"),
   email: z.string().trim().email("E-mail inválido"),
   password: z.string().min(6, "A senha precisa ter pelo menos 6 caracteres"),
+  cpf: cpfSchema,
+  birthDate: birthDateSchema,
 });
 
 export const brideLoginSchema = z.object({
   email: z.string().trim().email("E-mail inválido"),
   password: z.string().min(1, "Informe sua senha"),
+});
+
+export const bridePasswordResetSchema = z.object({
+  email: z.string().trim().email("E-mail inválido"),
+  cpf: cpfSchema,
+  birthDate: birthDateSchema,
+  newPassword: z.string().min(6, "A senha precisa ter pelo menos 6 caracteres"),
 });
 
 export const postSchema = z.object({
