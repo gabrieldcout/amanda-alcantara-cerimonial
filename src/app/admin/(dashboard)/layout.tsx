@@ -1,6 +1,10 @@
 import type { ReactNode } from "react";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 
+// Todo o painel admin é dinâmico (auth por request + queries ao banco),
+// então nunca deve ser pre-renderizado no build.
+export const dynamic = "force-dynamic";
+
 export default function AdminDashboardLayout({
   children,
 }: {

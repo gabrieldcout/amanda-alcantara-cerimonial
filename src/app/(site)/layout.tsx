@@ -4,6 +4,10 @@ import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { getSiteSettings } from "@/lib/data";
 
+// Todas as páginas do site consultam o banco (settings, casais, gallery etc),
+// então são renderizadas em runtime (evita pre-render sem DATABASE_URL no build).
+export const dynamic = "force-dynamic";
+
 export default async function SiteLayout({
   children,
 }: {
