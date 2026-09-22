@@ -102,3 +102,11 @@ export async function getCoupleBySlug(slug: string) {
     include: { media: { orderBy: { order: "asc" } } },
   });
 }
+
+export async function getUpcomingCouple() {
+  return prisma.couple.findFirst({
+    where: { published: true, weddingDate: { gte: new Date() } },
+    orderBy: { weddingDate: "asc" },
+    include: { media: { orderBy: { order: "asc" } } },
+  });
+}

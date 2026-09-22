@@ -1,6 +1,8 @@
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { WeddingCountdown } from "@/components/site/WeddingCountdown";
+import { getUpcomingCouple } from "@/lib/data";
 
 const ASSESSORIA_CARDS = [
   {
@@ -72,7 +74,9 @@ const VOCE_SE_IDENTIFICA = [
   "Você valoriza um evento bem organizado, bonito, com emoção, e sonha com uma celebração fluida, elegante, sem correria.",
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const upcomingCouple = await getUpcomingCouple();
+
   return (
     <>
       {/* Hero */}
@@ -109,6 +113,38 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* Próximo casamento */}
+      {upcomingCouple && (
+        <section className="py-14 sm:py-20">
+          <Container>
+            <div className="grid gap-8 rounded-3xl bg-accent/25 p-6 sm:grid-cols-2 sm:items-center sm:gap-10 sm:p-10 lg:p-14">
+              <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-background">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={upcomingCouple.coverUrl ?? undefined}
+                  alt={upcomingCouple.names}
+                  className="h-auto w-full object-contain"
+                />
+              </div>
+              <div className="flex flex-col items-start gap-5">
+                <SectionHeading
+                  eyebrow="Próximo casamento"
+                  title={upcomingCouple.names}
+                  align="left"
+                />
+                <p className="text-muted-foreground">
+                  {new Date(upcomingCouple.weddingDate!).toLocaleDateString("pt-BR", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </p>
+                <WeddingCountdown weddingDate={upcomingCouple.weddingDate!.toISOString()} />
+              </div>
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* Sobre mim */}
       <section className="py-14 sm:py-20">
