@@ -3,10 +3,10 @@ generator client {
 }
 
 datasource db {
-  // MySQL da Hostinger (Business Web Hosting inclui MySQL ilimitado).
-  // A DATABASE_URL vai no .env no formato:
-  // mysql://usuario:senha@localhost:3306/nome_do_banco
-  provider = "mysql"
+  // SQLite local, empacotado no deploy só para esta prévia (somente leitura
+  // em produção). Trocar para "mysql" quando a hospedagem MySQL da Hostinger
+  // estiver configurada.
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -14,9 +14,9 @@ model Testimonial {
   id         String   @id @default(cuid())
   clientName String
   eventType  String? // ex: "Casamento", "Debutante", "Batizado"
-  quote      String   @db.Text
+  quote      String
   rating     Int      @default(5)
-  photoUrl   String?  @db.Text
+  photoUrl   String?
   published  Boolean  @default(true)
   order      Int      @default(0)
   createdAt  DateTime @default(now())
@@ -27,8 +27,8 @@ model TeamMember {
   id        String   @id @default(cuid())
   name      String
   role      String
-  bio       String?  @db.Text
-  photoUrl  String?  @db.Text
+  bio       String?
+  photoUrl  String?
   published Boolean  @default(true)
   order     Int      @default(0)
   createdAt DateTime @default(now())
@@ -39,8 +39,8 @@ model Partner {
   id        String   @id @default(cuid())
   name      String
   category  String? // ex: "Fotografia", "Buffet", "Decoração"
-  logoUrl   String?  @db.Text
-  website   String?  @db.Text
+  logoUrl   String?
+  website   String?
   published Boolean  @default(true)
   order     Int      @default(0)
   createdAt DateTime @default(now())
@@ -48,7 +48,7 @@ model Partner {
 
 model GalleryImage {
   id        String   @id @default(cuid())
-  url       String   @db.Text
+  url       String
   caption   String?
   category  String? // ex: "Casamento", "Debutante"
   published Boolean  @default(true)
@@ -75,7 +75,7 @@ model QuoteRequest {
   location    String?
   guestCount  String?
   partnerName String?
-  message     String?   @db.Text
+  message     String?
   status      String    @default("novo")
   createdAt   DateTime  @default(now())
 }
@@ -83,8 +83,8 @@ model QuoteRequest {
 model SiteSettings {
   id             Int     @id @default(1)
   heroTitle      String
-  heroSubtitle   String  @db.Text
-  aboutText      String  @db.Text
+  heroSubtitle   String
+  aboutText      String
   instagramUrl   String?
   tiktokUrl      String?
   whatsappNumber String?
@@ -100,7 +100,7 @@ model BrideUser {
   passwordHash String
   cpf          String
   birthDate    DateTime
-  avatarUrl    String?  @db.Text
+  avatarUrl    String?
   banned       Boolean  @default(false)
   createdAt    DateTime @default(now())
 
@@ -113,8 +113,8 @@ model Post {
   id        String   @id @default(cuid())
   authorId  String
   author    BrideUser @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  content   String   @db.Text
-  imageUrl  String?  @db.Text
+  content   String
+  imageUrl  String?
   published Boolean  @default(false)
   createdAt DateTime @default(now())
 
@@ -130,7 +130,7 @@ model Comment {
   post      Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
   authorId  String
   author    BrideUser @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  content   String   @db.Text
+  content   String
   published Boolean  @default(false)
   createdAt DateTime @default(now())
 
@@ -159,8 +159,8 @@ model Couple {
   names       String // ex: "Ana & João"
   slug        String    @unique
   weddingDate DateTime?
-  coverUrl    String?   @db.Text
-  story       String?   @db.Text
+  coverUrl    String?
+  story       String?
   published   Boolean   @default(true)
   order       Int       @default(0)
   createdAt   DateTime  @default(now())
@@ -174,7 +174,7 @@ model Couple {
 model BackstageMedia {
   id        String   @id @default(cuid())
   type      String
-  url       String   @db.Text
+  url       String
   caption   String?
   published Boolean  @default(true)
   order     Int      @default(0)
@@ -187,7 +187,7 @@ model CoupleMedia {
   coupleId String
   couple   Couple  @relation(fields: [coupleId], references: [id], onDelete: Cascade)
   type     String
-  url      String  @db.Text
+  url      String
   caption  String?
   order    Int     @default(0)
 
