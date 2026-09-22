@@ -3,10 +3,11 @@ generator client {
 }
 
 datasource db {
-  // SQLite local, empacotado no deploy só para esta prévia (somente leitura
-  // em produção). Trocar para "mysql" quando a hospedagem MySQL da Hostinger
-  // estiver configurada.
-  provider = "sqlite"
+  // MySQL da Hostinger (Business Web Hosting inclui MySQL).
+  // Em dev roda o mesmo provider via Docker/Local MySQL.
+  // DATABASE_URL no formato:
+  //   mysql://user:pass@localhost/db?socket=/var/lib/mysql/mysql.sock
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
