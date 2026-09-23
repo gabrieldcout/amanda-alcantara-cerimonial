@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { createTeamMember } from "@/lib/actions/team";
 import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
 
 export default async function AdminEquipePage() {
   const team = await prisma.teamMember.findMany({
@@ -33,7 +34,7 @@ export default async function AdminEquipePage() {
         </AdminField>
         <div className="sm:col-span-2">
           <AdminField label="Bio (opcional)" name="bio">
-            <textarea name="bio" rows={3} className="input resize-none" />
+            <RichTextEditor name="bio" rows={3} />
           </AdminField>
         </div>
         <AdminField label="Foto (opcional)" name="photo">

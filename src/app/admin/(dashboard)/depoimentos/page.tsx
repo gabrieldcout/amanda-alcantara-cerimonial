@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { createTestimonial } from "@/lib/actions/testimonials";
 import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
 
 export default async function AdminDepoimentosPage() {
   const testimonials = await prisma.testimonial.findMany({
@@ -45,7 +46,7 @@ export default async function AdminDepoimentosPage() {
         </AdminField>
         <div className="sm:col-span-2">
           <AdminField label="Depoimento" name="quote">
-            <textarea name="quote" required rows={3} className="input resize-none" />
+            <RichTextEditor name="quote" rows={3} />
           </AdminField>
         </div>
         <AdminField label="Ordem de exibição" name="order">

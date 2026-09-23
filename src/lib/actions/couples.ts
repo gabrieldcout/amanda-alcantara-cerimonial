@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { coupleMediaSchema, coupleSchema } from "@/lib/validations";
 import { saveUploadedPhoto } from "@/lib/uploads";
+import { sanitizeRichText } from "@/lib/sanitizeHtml";
 
 function parseCoupleForm(formData: FormData) {
   return coupleSchema.parse({
@@ -26,7 +27,7 @@ export async function createCouple(formData: FormData) {
       ...data,
       weddingDate: data.weddingDate ? new Date(data.weddingDate) : null,
       coverUrl,
-      story: data.story || null,
+      story: data.story ? sanitizeRichText(data.story) : null,
     },
   });
   revalidatePath("/admin/casais");
@@ -43,7 +44,7 @@ export async function updateCouple(id: string, formData: FormData) {
       ...data,
       weddingDate: data.weddingDate ? new Date(data.weddingDate) : null,
       ...(coverUrl ? { coverUrl } : {}),
-      story: data.story || null,
+      story: data.story ? sanitizeRichText(data.story) : null,
     },
   });
   revalidatePath("/admin/casais");

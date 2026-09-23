@@ -5,6 +5,7 @@ import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { MediaImage } from "@/components/site/MediaImage";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
 
 export default async function EditTeamMemberPage({
   params,
@@ -33,12 +34,7 @@ export default async function EditTeamMemberPage({
         </AdminField>
         <div className="sm:col-span-2">
           <AdminField label="Bio (opcional)" name="bio">
-            <textarea
-              name="bio"
-              rows={3}
-              defaultValue={member.bio ?? ""}
-              className="input resize-none"
-            />
+            <RichTextEditor name="bio" defaultValue={member.bio} rows={3} />
           </AdminField>
         </div>
         <AdminField label="Foto (opcional)" name="photo">

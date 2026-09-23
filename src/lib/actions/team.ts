@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { teamMemberSchema } from "@/lib/validations";
 import { saveUploadedPhoto } from "@/lib/uploads";
+import { sanitizeRichText } from "@/lib/sanitizeHtml";
 
 function parseForm(formData: FormData) {
   return teamMemberSchema.parse({
@@ -21,7 +22,7 @@ export async function createTeamMember(formData: FormData) {
   const data = parseForm(formData);
   const photoUrl = await saveUploadedPhoto(formData.get("photo"));
   await prisma.teamMember.create({
-    data: { ...data, bio: data.bio || null, photoUrl },
+    data: { ...data, bio: data.bio ? sanitizeRichText(data.bio) : null, photoUrl },
   });
   revalidatePath("/admin/equipe");
   revalidatePath("/equipe");
@@ -34,7 +35,11 @@ export async function updateTeamMember(id: string, formData: FormData) {
   const photoUrl = await saveUploadedPhoto(formData.get("photo"));
   await prisma.teamMember.update({
     where: { id },
-    data: { ...data, bio: data.bio || null, ...(photoUrl ? { photoUrl } : {}) },
+    data: {
+      ...data,
+      bio: data.bio ? sanitizeRichText(data.bio) : null,
+      ...(photoUrl ? { photoUrl } : {}),
+    },
   });
   revalidatePath("/admin/equipe");
   revalidatePath("/equipe");

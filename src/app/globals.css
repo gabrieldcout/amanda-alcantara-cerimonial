@@ -53,3 +53,31 @@ body {
   border-color: var(--accent);
 }
 
+.rich-text p {
+  margin: 0 0 0.6em;
+}
+
+.rich-text p:last-child {
+  margin-bottom: 0;
+}
+
+.rich-text strong {
+  font-weight: 700;
+}
+
+div.rich-text {
+  cursor: text;
+}
+
+div.rich-text:focus {
+  border-color: var(--accent);
+}
+
+.testimonial-quote p:first-child::before {
+  content: "\201C";
+}
+
+.testimonial-quote p:last-child::after {
+  content: "\201D";
+}
+

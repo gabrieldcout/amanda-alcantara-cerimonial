@@ -24,7 +24,10 @@ export function TeamCard({ member }: { member: TeamMember }) {
         </p>
       </div>
       {member.bio && (
-        <p className="max-w-xs text-sm text-muted-foreground">{member.bio}</p>
+        <div
+          className="rich-text max-w-xs text-sm text-muted-foreground"
+          dangerouslySetInnerHTML={{ __html: member.bio }}
+        />
       )}
     </div>
   );

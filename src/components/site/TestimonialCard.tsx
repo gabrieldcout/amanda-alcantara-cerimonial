@@ -19,9 +19,10 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           </span>
         ))}
       </div>
-      <p className="flex-1 text-foreground/90 leading-relaxed">
-        &ldquo;{testimonial.quote}&rdquo;
-      </p>
+      <div
+        className="rich-text testimonial-quote flex-1 text-foreground/90 leading-relaxed"
+        dangerouslySetInnerHTML={{ __html: testimonial.quote }}
+      />
       <div className="flex items-center gap-3 pt-2">
         <MediaImage
           src={testimonial.photoUrl}

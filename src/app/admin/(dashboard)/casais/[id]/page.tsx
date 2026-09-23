@@ -10,6 +10,7 @@ import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { MediaImage } from "@/components/site/MediaImage";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
 
 export default async function EditCouplePage({
   params,
@@ -78,12 +79,7 @@ export default async function EditCouplePage({
         </div>
         <div className="sm:col-span-2">
           <AdminField label="História do casal (opcional)" name="story">
-            <textarea
-              name="story"
-              rows={4}
-              defaultValue={couple.story ?? ""}
-              className="input resize-none"
-            />
+            <RichTextEditor name="story" defaultValue={couple.story} rows={4} />
           </AdminField>
         </div>
         <AdminField label="Ordem de exibição" name="order">

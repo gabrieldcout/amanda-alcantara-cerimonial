@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { createCouple } from "@/lib/actions/couples";
 import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
 
 export default async function AdminCasaisPage() {
   const couples = await prisma.couple.findMany({
@@ -79,7 +80,7 @@ export default async function AdminCasaisPage() {
         </AdminField>
         <div className="sm:col-span-2">
           <AdminField label="História do casal (opcional)" name="story">
-            <textarea name="story" rows={3} className="input resize-none" />
+            <RichTextEditor name="story" rows={3} />
           </AdminField>
         </div>
         <AdminField label="Ordem de exibição" name="order">

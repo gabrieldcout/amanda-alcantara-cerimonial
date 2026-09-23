@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { testimonialSchema } from "@/lib/validations";
 import { saveUploadedPhoto } from "@/lib/uploads";
+import { sanitizeRichText } from "@/lib/sanitizeHtml";
 
 function parseForm(formData: FormData) {
   return testimonialSchema.parse({
@@ -24,6 +25,7 @@ export async function createTestimonial(formData: FormData) {
   await prisma.testimonial.create({
     data: {
       ...data,
+      quote: sanitizeRichText(data.quote),
       eventType: data.eventType || null,
       photoUrl,
     },
@@ -41,6 +43,7 @@ export async function updateTestimonial(id: string, formData: FormData) {
     where: { id },
     data: {
       ...data,
+      quote: sanitizeRichText(data.quote),
       eventType: data.eventType || null,
       ...(photoUrl ? { photoUrl } : {}),
     },

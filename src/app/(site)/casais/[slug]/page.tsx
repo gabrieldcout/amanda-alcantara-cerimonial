@@ -65,23 +65,10 @@ export default async function CoupleDetailPage({
           </div>
 
           {couple.story && (
-            <div className="mx-auto flex max-w-2xl flex-col gap-4 text-center text-foreground/90 leading-relaxed">
-              {couple.story.split(/\n{2,}/).map((paragraph, i) => {
-                const trimmed = paragraph.trim();
-                const isItalic =
-                  trimmed.startsWith("*") && trimmed.endsWith("*");
-                const text = isItalic ? trimmed.slice(1, -1) : trimmed;
-                return isItalic ? (
-                  <p key={i} className="whitespace-pre-line italic text-accent-dark">
-                    {text}
-                  </p>
-                ) : (
-                  <p key={i} className="whitespace-pre-line">
-                    {text}
-                  </p>
-                );
-              })}
-            </div>
+            <div
+              className="rich-text mx-auto max-w-2xl text-center text-foreground/90 leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: couple.story }}
+            />
           )}
 
           {videos.length > 0 && (

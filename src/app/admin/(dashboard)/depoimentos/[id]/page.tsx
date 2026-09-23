@@ -5,6 +5,7 @@ import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { MediaImage } from "@/components/site/MediaImage";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
 
 export default async function EditTestimonialPage({
   params,
@@ -68,13 +69,7 @@ export default async function EditTestimonialPage({
         </AdminField>
         <div className="sm:col-span-2">
           <AdminField label="Depoimento" name="quote">
-            <textarea
-              name="quote"
-              required
-              rows={3}
-              defaultValue={testimonial.quote}
-              className="input resize-none"
-            />
+            <RichTextEditor name="quote" defaultValue={testimonial.quote} rows={3} />
           </AdminField>
         </div>
         <AdminField label="Ordem de exibição" name="order">
