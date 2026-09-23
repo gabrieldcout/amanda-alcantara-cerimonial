@@ -5,7 +5,6 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { TextStyle } from "@tiptap/extension-text-style";
 import { FontFamily } from "@tiptap/extension-font-family";
-import { Underline } from "@tiptap/extension-underline";
 import { FONT_OPTIONS } from "@/lib/richTextFonts";
 
 export function RichTextEditor({
@@ -32,7 +31,7 @@ export function RichTextEditor({
 
   const editor = useEditor({
     immediatelyRender: false,
-    extensions: [StarterKit, TextStyle, FontFamily, Underline],
+    extensions: [StarterKit, TextStyle, FontFamily],
     content: defaultValue || "",
     editorProps: {
       attributes: {
