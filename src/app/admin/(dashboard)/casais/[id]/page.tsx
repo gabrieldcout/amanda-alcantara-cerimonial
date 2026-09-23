@@ -59,9 +59,23 @@ export default async function EditCouplePage({
             className="input"
           />
         </AdminField>
-        <AdminField label="Foto de capa (URL, opcional)" name="coverUrl">
-          <input name="coverUrl" defaultValue={couple.coverUrl ?? ""} className="input" />
-        </AdminField>
+        <div className="sm:col-span-2">
+          <AdminField label="Foto de capa (opcional)" name="photo">
+            {couple.coverUrl && (
+              <MediaImage
+                src={couple.coverUrl}
+                alt=""
+                className="mb-2 aspect-video w-full max-w-xs rounded-lg object-cover"
+              />
+            )}
+            <input type="file" name="photo" accept="image/*" className="input" />
+            {couple.coverUrl && (
+              <p className="mt-1 text-xs text-muted-foreground">
+                Deixe em branco pra manter a foto atual.
+              </p>
+            )}
+          </AdminField>
+        </div>
         <div className="sm:col-span-2">
           <AdminField label="História do casal (opcional)" name="story">
             <textarea
@@ -111,14 +125,14 @@ export default async function EditCouplePage({
               <option value="video">Vídeo</option>
             </select>
           </AdminField>
-          <AdminField label="URL" name="url">
-            <input
-              name="url"
-              required
-              placeholder="https://... (foto ou link do YouTube/Vimeo)"
-              className="input"
-            />
+          <AdminField label="Foto (se o tipo for Foto)" name="photo">
+            <input type="file" name="photo" accept="image/*" className="input" />
           </AdminField>
+          <div className="sm:col-span-2">
+            <AdminField label="URL do vídeo (se o tipo for Vídeo — YouTube, Vimeo ou link direto)" name="url">
+              <input name="url" placeholder="https://..." className="input" />
+            </AdminField>
+          </div>
           <AdminField label="Legenda (opcional)" name="caption">
             <input name="caption" className="input" />
           </AdminField>

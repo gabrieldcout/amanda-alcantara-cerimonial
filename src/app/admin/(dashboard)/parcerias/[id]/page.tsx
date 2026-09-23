@@ -4,6 +4,7 @@ import { updatePartner, deletePartner } from "@/lib/actions/partners";
 import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
+import { MediaImage } from "@/components/site/MediaImage";
 
 export default async function EditPartnerPage({
   params,
@@ -30,8 +31,20 @@ export default async function EditPartnerPage({
         <AdminField label="Categoria" name="category">
           <input name="category" defaultValue={partner.category ?? ""} className="input" />
         </AdminField>
-        <AdminField label="Logo (URL, opcional)" name="logoUrl">
-          <input name="logoUrl" defaultValue={partner.logoUrl ?? ""} className="input" />
+        <AdminField label="Logo (opcional)" name="photo">
+          {partner.logoUrl && (
+            <MediaImage
+              src={partner.logoUrl}
+              alt=""
+              className="mb-2 h-16 w-16 rounded-lg object-contain"
+            />
+          )}
+          <input type="file" name="photo" accept="image/*" className="input" />
+          {partner.logoUrl && (
+            <p className="mt-1 text-xs text-muted-foreground">
+              Deixe em branco pra manter o logo atual.
+            </p>
+          )}
         </AdminField>
         <AdminField label="Site / Instagram (opcional)" name="website">
           <input name="website" defaultValue={partner.website ?? ""} className="input" />

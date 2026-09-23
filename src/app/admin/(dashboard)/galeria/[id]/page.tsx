@@ -30,8 +30,11 @@ export default async function EditGalleryImagePage({
         className="grid gap-4 rounded-2xl border border-border bg-card p-6 sm:grid-cols-2"
       >
         <div className="sm:col-span-2">
-          <AdminField label="URL da imagem" name="url">
-            <input name="url" required defaultValue={image.url} className="input" />
+          <AdminField label="Foto" name="photo">
+            <input type="file" name="photo" accept="image/*" className="input" />
+            <p className="mt-1 text-xs text-muted-foreground">
+              Deixe em branco pra manter a foto atual.
+            </p>
           </AdminField>
         </div>
         <AdminField label="Legenda (opcional)" name="caption">

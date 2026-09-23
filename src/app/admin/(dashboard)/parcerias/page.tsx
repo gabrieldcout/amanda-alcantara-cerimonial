@@ -31,8 +31,8 @@ export default async function AdminParceriasPage() {
         <AdminField label="Categoria" name="category">
           <input name="category" placeholder="Ex: Fotografia" className="input" />
         </AdminField>
-        <AdminField label="Logo (URL, opcional)" name="logoUrl">
-          <input name="logoUrl" placeholder="https://..." className="input" />
+        <AdminField label="Logo (opcional)" name="photo">
+          <input type="file" name="photo" accept="image/*" className="input" />
         </AdminField>
         <AdminField label="Site / Instagram (opcional)" name="website">
           <input name="website" placeholder="https://..." className="input" />

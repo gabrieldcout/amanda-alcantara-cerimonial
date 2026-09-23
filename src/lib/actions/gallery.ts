@@ -4,10 +4,10 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { galleryImageSchema } from "@/lib/validations";
+import { saveUploadedPhoto } from "@/lib/uploads";
 
 function parseForm(formData: FormData) {
   return galleryImageSchema.parse({
-    url: formData.get("url"),
     caption: formData.get("caption"),
     category: formData.get("category"),
     published: formData.get("published") === "on",
@@ -18,8 +18,10 @@ function parseForm(formData: FormData) {
 export async function createGalleryImage(formData: FormData) {
   await requireAdmin();
   const data = parseForm(formData);
+  const url = await saveUploadedPhoto(formData.get("photo"));
+  if (!url) throw new Error("Selecione uma foto para enviar");
   await prisma.galleryImage.create({
-    data: { ...data, caption: data.caption || null, category: data.category || null },
+    data: { ...data, url, caption: data.caption || null, category: data.category || null },
   });
   revalidatePath("/admin/galeria");
   revalidatePath("/portfolio");
@@ -29,9 +31,15 @@ export async function createGalleryImage(formData: FormData) {
 export async function updateGalleryImage(id: string, formData: FormData) {
   await requireAdmin();
   const data = parseForm(formData);
+  const url = await saveUploadedPhoto(formData.get("photo"));
   await prisma.galleryImage.update({
     where: { id },
-    data: { ...data, caption: data.caption || null, category: data.category || null },
+    data: {
+      ...data,
+      ...(url ? { url } : {}),
+      caption: data.caption || null,
+      category: data.category || null,
+    },
   });
   revalidatePath("/admin/galeria");
   revalidatePath("/portfolio");

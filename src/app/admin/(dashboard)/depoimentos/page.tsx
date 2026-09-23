@@ -40,8 +40,8 @@ export default async function AdminDepoimentosPage() {
             ))}
           </select>
         </AdminField>
-        <AdminField label="Foto (URL, opcional)" name="photoUrl">
-          <input name="photoUrl" placeholder="https://..." className="input" />
+        <AdminField label="Foto (opcional)" name="photo">
+          <input type="file" name="photo" accept="image/*" className="input" />
         </AdminField>
         <div className="sm:col-span-2">
           <AdminField label="Depoimento" name="quote">

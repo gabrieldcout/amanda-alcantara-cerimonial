@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { testimonialSchema } from "@/lib/validations";
+import { saveUploadedPhoto } from "@/lib/uploads";
 
 function parseForm(formData: FormData) {
   return testimonialSchema.parse({
@@ -11,7 +12,6 @@ function parseForm(formData: FormData) {
     eventType: formData.get("eventType"),
     quote: formData.get("quote"),
     rating: formData.get("rating"),
-    photoUrl: formData.get("photoUrl"),
     published: formData.get("published") === "on",
     order: formData.get("order") || 0,
   });
@@ -20,11 +20,12 @@ function parseForm(formData: FormData) {
 export async function createTestimonial(formData: FormData) {
   await requireAdmin();
   const data = parseForm(formData);
+  const photoUrl = await saveUploadedPhoto(formData.get("photo"));
   await prisma.testimonial.create({
     data: {
       ...data,
       eventType: data.eventType || null,
-      photoUrl: data.photoUrl || null,
+      photoUrl,
     },
   });
   revalidatePath("/admin/depoimentos");
@@ -35,12 +36,13 @@ export async function createTestimonial(formData: FormData) {
 export async function updateTestimonial(id: string, formData: FormData) {
   await requireAdmin();
   const data = parseForm(formData);
+  const photoUrl = await saveUploadedPhoto(formData.get("photo"));
   await prisma.testimonial.update({
     where: { id },
     data: {
       ...data,
       eventType: data.eventType || null,
-      photoUrl: data.photoUrl || null,
+      ...(photoUrl ? { photoUrl } : {}),
     },
   });
   revalidatePath("/admin/depoimentos");

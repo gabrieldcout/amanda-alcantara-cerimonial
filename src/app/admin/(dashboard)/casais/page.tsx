@@ -74,8 +74,8 @@ export default async function AdminCasaisPage() {
         <AdminField label="Data do casamento (opcional)" name="weddingDate">
           <input name="weddingDate" type="date" className="input" />
         </AdminField>
-        <AdminField label="Foto de capa (URL, opcional)" name="coverUrl">
-          <input name="coverUrl" placeholder="https://..." className="input" />
+        <AdminField label="Foto de capa (opcional)" name="photo">
+          <input type="file" name="photo" accept="image/*" className="input" />
         </AdminField>
         <div className="sm:col-span-2">
           <AdminField label="História do casal (opcional)" name="story">

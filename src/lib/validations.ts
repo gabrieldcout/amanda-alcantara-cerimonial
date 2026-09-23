@@ -48,7 +48,6 @@ export const coupleSchema = z.object({
     .min(2, "Informe um identificador (slug)")
     .regex(/^[a-z0-9-]+$/, "Use apenas letras minúsculas, números e hífen"),
   weddingDate: z.string().trim().optional().or(z.literal("")),
-  coverUrl: z.string().trim().optional().or(z.literal("")),
   story: z.string().trim().optional().or(z.literal("")),
   published: z.coerce.boolean(),
   order: z.coerce.number().int().default(0),
@@ -88,7 +87,6 @@ export const testimonialSchema = z.object({
   eventType: z.string().trim().optional().or(z.literal("")),
   quote: z.string().trim().min(5, "O depoimento não pode ficar vazio"),
   rating: z.coerce.number().int().min(1).max(5),
-  photoUrl: z.string().trim().optional().or(z.literal("")),
   published: z.coerce.boolean(),
   order: z.coerce.number().int().default(0),
 });
@@ -97,7 +95,6 @@ export const teamMemberSchema = z.object({
   name: z.string().trim().min(2, "Informe o nome"),
   role: z.string().trim().min(2, "Informe o cargo/função"),
   bio: z.string().trim().optional().or(z.literal("")),
-  photoUrl: z.string().trim().optional().or(z.literal("")),
   published: z.coerce.boolean(),
   order: z.coerce.number().int().default(0),
 });
@@ -105,14 +102,12 @@ export const teamMemberSchema = z.object({
 export const partnerSchema = z.object({
   name: z.string().trim().min(2, "Informe o nome do parceiro"),
   category: z.string().trim().optional().or(z.literal("")),
-  logoUrl: z.string().trim().optional().or(z.literal("")),
   website: z.string().trim().optional().or(z.literal("")),
   published: z.coerce.boolean(),
   order: z.coerce.number().int().default(0),
 });
 
 export const galleryImageSchema = z.object({
-  url: z.string().trim().min(1, "Informe a URL da imagem"),
   caption: z.string().trim().optional().or(z.literal("")),
   category: z.string().trim().optional().or(z.literal("")),
   published: z.coerce.boolean(),

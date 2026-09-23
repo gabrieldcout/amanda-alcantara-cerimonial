@@ -4,6 +4,7 @@ import { updateTestimonial, deleteTestimonial } from "@/lib/actions/testimonials
 import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
+import { MediaImage } from "@/components/site/MediaImage";
 
 export default async function EditTestimonialPage({
   params,
@@ -50,12 +51,20 @@ export default async function EditTestimonialPage({
             ))}
           </select>
         </AdminField>
-        <AdminField label="Foto (URL, opcional)" name="photoUrl">
-          <input
-            name="photoUrl"
-            defaultValue={testimonial.photoUrl ?? ""}
-            className="input"
-          />
+        <AdminField label="Foto (opcional)" name="photo">
+          {testimonial.photoUrl && (
+            <MediaImage
+              src={testimonial.photoUrl}
+              alt=""
+              className="mb-2 h-20 w-20 rounded-full object-cover"
+            />
+          )}
+          <input type="file" name="photo" accept="image/*" className="input" />
+          {testimonial.photoUrl && (
+            <p className="mt-1 text-xs text-muted-foreground">
+              Deixe em branco pra manter a foto atual.
+            </p>
+          )}
         </AdminField>
         <div className="sm:col-span-2">
           <AdminField label="Depoimento" name="quote">

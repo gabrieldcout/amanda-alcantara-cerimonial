@@ -4,13 +4,13 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { coupleMediaSchema, coupleSchema } from "@/lib/validations";
+import { saveUploadedPhoto } from "@/lib/uploads";
 
 function parseCoupleForm(formData: FormData) {
   return coupleSchema.parse({
     names: formData.get("names"),
     slug: formData.get("slug"),
     weddingDate: formData.get("weddingDate"),
-    coverUrl: formData.get("coverUrl"),
     story: formData.get("story"),
     published: formData.get("published") === "on",
     order: formData.get("order") || 0,
@@ -20,11 +20,12 @@ function parseCoupleForm(formData: FormData) {
 export async function createCouple(formData: FormData) {
   await requireAdmin();
   const data = parseCoupleForm(formData);
+  const coverUrl = await saveUploadedPhoto(formData.get("photo"));
   await prisma.couple.create({
     data: {
       ...data,
       weddingDate: data.weddingDate ? new Date(data.weddingDate) : null,
-      coverUrl: data.coverUrl || null,
+      coverUrl,
       story: data.story || null,
     },
   });
@@ -35,12 +36,13 @@ export async function createCouple(formData: FormData) {
 export async function updateCouple(id: string, formData: FormData) {
   await requireAdmin();
   const data = parseCoupleForm(formData);
+  const coverUrl = await saveUploadedPhoto(formData.get("photo"));
   const couple = await prisma.couple.update({
     where: { id },
     data: {
       ...data,
       weddingDate: data.weddingDate ? new Date(data.weddingDate) : null,
-      coverUrl: data.coverUrl || null,
+      ...(coverUrl ? { coverUrl } : {}),
       story: data.story || null,
     },
   });
@@ -60,9 +62,21 @@ export async function deleteCouple(id: string) {
 
 export async function addCoupleMedia(coupleId: string, formData: FormData) {
   await requireAdmin();
+  const type = formData.get("type");
+
+  let url: string;
+  if (type === "photo") {
+    const uploaded = await saveUploadedPhoto(formData.get("photo"));
+    if (!uploaded) throw new Error("Selecione uma foto para enviar");
+    url = uploaded;
+  } else {
+    url = String(formData.get("url") || "").trim();
+    if (!url) throw new Error("Informe a URL do vídeo");
+  }
+
   const data = coupleMediaSchema.parse({
-    type: formData.get("type"),
-    url: formData.get("url"),
+    type,
+    url,
     caption: formData.get("caption"),
     order: formData.get("order") || 0,
   });

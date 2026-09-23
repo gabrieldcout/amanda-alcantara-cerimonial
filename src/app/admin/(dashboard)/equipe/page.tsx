@@ -36,8 +36,8 @@ export default async function AdminEquipePage() {
             <textarea name="bio" rows={3} className="input resize-none" />
           </AdminField>
         </div>
-        <AdminField label="Foto (URL, opcional)" name="photoUrl">
-          <input name="photoUrl" placeholder="https://..." className="input" />
+        <AdminField label="Foto (opcional)" name="photo">
+          <input type="file" name="photo" accept="image/*" className="input" />
         </AdminField>
         <AdminField label="Ordem de exibição" name="order">
           <input name="order" type="number" defaultValue={0} className="input" />

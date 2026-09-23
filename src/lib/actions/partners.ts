@@ -4,12 +4,12 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { partnerSchema } from "@/lib/validations";
+import { saveUploadedPhoto } from "@/lib/uploads";
 
 function parseForm(formData: FormData) {
   return partnerSchema.parse({
     name: formData.get("name"),
     category: formData.get("category"),
-    logoUrl: formData.get("logoUrl"),
     website: formData.get("website"),
     published: formData.get("published") === "on",
     order: formData.get("order") || 0,
@@ -19,11 +19,12 @@ function parseForm(formData: FormData) {
 export async function createPartner(formData: FormData) {
   await requireAdmin();
   const data = parseForm(formData);
+  const logoUrl = await saveUploadedPhoto(formData.get("photo"));
   await prisma.partner.create({
     data: {
       ...data,
       category: data.category || null,
-      logoUrl: data.logoUrl || null,
+      logoUrl,
       website: data.website || null,
     },
   });
@@ -35,12 +36,13 @@ export async function createPartner(formData: FormData) {
 export async function updatePartner(id: string, formData: FormData) {
   await requireAdmin();
   const data = parseForm(formData);
+  const logoUrl = await saveUploadedPhoto(formData.get("photo"));
   await prisma.partner.update({
     where: { id },
     data: {
       ...data,
       category: data.category || null,
-      logoUrl: data.logoUrl || null,
+      ...(logoUrl ? { logoUrl } : {}),
       website: data.website || null,
     },
   });

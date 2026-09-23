@@ -21,8 +21,9 @@ export default async function AdminBastidoresPage() {
           Bastidores
         </h1>
         <p className="text-sm text-muted-foreground">
-          Fotos e vídeos dos bastidores dos eventos. Aceita link do
-          YouTube/Vimeo, URL de vídeo direto ou URL de imagem hospedada.
+          Fotos e vídeos dos bastidores dos eventos. Pra vídeo, cole o link do
+          YouTube/Vimeo ou de um arquivo de vídeo; pra foto, envie o arquivo
+          direto.
         </p>
       </div>
 
@@ -40,17 +41,15 @@ export default async function AdminBastidoresPage() {
         <AdminField label="Ordem de exibição" name="order">
           <input name="order" type="number" defaultValue={0} className="input" />
         </AdminField>
+        <AdminField label="Foto (se o tipo for Foto)" name="photo">
+          <input type="file" name="photo" accept="image/*" className="input" />
+        </AdminField>
         <div className="sm:col-span-2">
           <AdminField
-            label="URL (YouTube/Vimeo, arquivo de vídeo, ou imagem)"
+            label="URL do vídeo (se o tipo for Vídeo — YouTube, Vimeo ou link direto)"
             name="url"
           >
-            <input
-              name="url"
-              required
-              placeholder="https://..."
-              className="input"
-            />
+            <input name="url" placeholder="https://..." className="input" />
           </AdminField>
         </div>
         <div className="sm:col-span-2">

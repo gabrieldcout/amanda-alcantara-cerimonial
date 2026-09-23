@@ -4,6 +4,7 @@ import { updateTeamMember, deleteTeamMember } from "@/lib/actions/team";
 import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
+import { MediaImage } from "@/components/site/MediaImage";
 
 export default async function EditTeamMemberPage({
   params,
@@ -40,8 +41,20 @@ export default async function EditTeamMemberPage({
             />
           </AdminField>
         </div>
-        <AdminField label="Foto (URL, opcional)" name="photoUrl">
-          <input name="photoUrl" defaultValue={member.photoUrl ?? ""} className="input" />
+        <AdminField label="Foto (opcional)" name="photo">
+          {member.photoUrl && (
+            <MediaImage
+              src={member.photoUrl}
+              alt=""
+              className="mb-2 h-20 w-20 rounded-full object-cover"
+            />
+          )}
+          <input type="file" name="photo" accept="image/*" className="input" />
+          {member.photoUrl && (
+            <p className="mt-1 text-xs text-muted-foreground">
+              Deixe em branco pra manter a foto atual.
+            </p>
+          )}
         </AdminField>
         <AdminField label="Ordem de exibição" name="order">
           <input name="order" type="number" defaultValue={member.order} className="input" />

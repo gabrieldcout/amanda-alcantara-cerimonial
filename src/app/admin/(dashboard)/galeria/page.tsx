@@ -18,8 +18,7 @@ export default async function AdminGaleriaPage() {
           Galeria / Portfólio
         </h1>
         <p className="text-sm text-muted-foreground">
-          Fotos exibidas na página de portfólio e na home. Cole a URL de uma
-          imagem já hospedada (ex: Instagram, Google Drive público, Cloudinary).
+          Fotos exibidas na página de portfólio e na home.
         </p>
       </div>
 
@@ -29,8 +28,8 @@ export default async function AdminGaleriaPage() {
       >
         <p className="font-medium text-foreground sm:col-span-2">Nova foto</p>
         <div className="sm:col-span-2">
-          <AdminField label="URL da imagem" name="url">
-            <input name="url" required placeholder="https://..." className="input" />
+          <AdminField label="Foto" name="photo">
+            <input type="file" name="photo" accept="image/*" required className="input" />
           </AdminField>
         </div>
         <AdminField label="Legenda (opcional)" name="caption">
