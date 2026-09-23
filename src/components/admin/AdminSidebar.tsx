@@ -19,6 +19,7 @@ const LINKS = [
   { href: "/admin/parcerias", label: "Parcerias" },
   { href: "/admin/galeria", label: "Galeria / Portfólio" },
   { href: "/admin/configuracoes", label: "Configurações do site" },
+  { href: "/admin/tutorial", label: "Tutorial" },
 ];
 
 function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {

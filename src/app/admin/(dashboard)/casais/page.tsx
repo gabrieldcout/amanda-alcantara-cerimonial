@@ -10,6 +10,11 @@ export default async function AdminCasaisPage() {
     include: { _count: { select: { media: true } } },
   });
 
+  const upcomingCouple = await prisma.couple.findFirst({
+    where: { published: true, weddingDate: { gte: new Date() } },
+    orderBy: { weddingDate: "asc" },
+  });
+
   return (
     <div className="flex flex-col gap-10">
       <div>
@@ -18,6 +23,34 @@ export default async function AdminCasaisPage() {
         </h1>
         <p className="text-sm text-muted-foreground">
           Perfis de casais com fotos, vídeos e a história do grande dia.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-accent/30 bg-accent/10 p-4 text-sm text-foreground">
+        <p className="font-medium">Contagem regressiva na home</p>
+        {upcomingCouple ? (
+          <p className="mt-1 text-muted-foreground">
+            Hoje o site mostra <strong>{upcomingCouple.names}</strong> como
+            "Próximo casamento" na página inicial. Isso é automático: sempre
+            que a data desse casamento passar, o casal seguinte com data
+            futura e marcado como "Publicado" assume o lugar.
+          </p>
+        ) : (
+          <p className="mt-1 text-muted-foreground">
+            Nenhum casal com data futura publicada no momento — a seção
+            "Próximo casamento" fica escondida na home até você cadastrar um
+            casal com a <strong>data do casamento</strong> preenchida e a
+            caixinha <strong>"Publicado no site"</strong> marcada.
+          </p>
+        )}
+        <p className="mt-2 text-muted-foreground">
+          Sempre que fechar um casamento novo, cadastre o casal aqui com a
+          data — assim a home fica sempre com a contagem certa. Veja o passo
+          a passo completo na aba{" "}
+          <Link href="/admin/tutorial" className="text-accent underline">
+            Tutorial
+          </Link>
+          .
         </p>
       </div>
 
@@ -72,7 +105,14 @@ export default async function AdminCasaisPage() {
             className="flex items-center justify-between gap-4 rounded-xl border border-border bg-card p-4 hover:shadow-sm"
           >
             <div>
-              <p className="font-medium text-foreground">{couple.names}</p>
+              <p className="font-medium text-foreground">
+                {couple.names}
+                {upcomingCouple?.id === couple.id && (
+                  <span className="ml-2 rounded-full bg-accent/20 px-2 py-0.5 text-[11px] font-normal text-accent-dark">
+                    Na home agora
+                  </span>
+                )}
+              </p>
               <p className="text-sm text-muted-foreground">
                 {couple._count.media} arquivo(s) de mídia
               </p>
