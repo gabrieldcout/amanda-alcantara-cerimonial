@@ -10,6 +10,13 @@ export function sanitizeRichText(html: string | null | undefined): string {
   });
 }
 
+// Versão sem tags, pra usar em atributos que não aceitam HTML (alt,
+// aria-label) quando o campo original virou rich text.
+export function stripHtml(html: string | null | undefined): string {
+  if (!html) return "";
+  return DOMPurify.sanitize(html, { ALLOWED_TAGS: [] }).trim();
+}
+
 // Usado em texto digitado por visitantes (ex: depoimento público) — não
 // confia em nenhuma tag vinda do formulário, só preserva quebras de linha.
 export function plainTextToSafeHtml(text: string): string {

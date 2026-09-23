@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { getSiteSettings } from "@/lib/data";
+import { stripHtml } from "@/lib/sanitizeHtml";
 
 // Todas as páginas do site consultam o banco (settings, casais, gallery etc),
 // então são renderizadas em runtime (evita pre-render sem DATABASE_URL no build).
@@ -14,6 +15,7 @@ export default async function SiteLayout({
   children: ReactNode;
 }) {
   const settings = await getSiteSettings();
+  const siteNamePlain = stripHtml(settings.heroTitle) || settings.heroTitle;
 
   return (
     <>
@@ -26,10 +28,11 @@ export default async function SiteLayout({
         />
       </div>
       <div className="relative z-10 flex min-h-full flex-1 flex-col">
-        <Header siteName={settings.heroTitle} />
+        <Header siteName={siteNamePlain} />
         <main className="flex-1">{children}</main>
         <Footer
-          siteName={settings.heroTitle}
+          siteName={siteNamePlain}
+          siteNameHtml={settings.heroTitle}
           instagramUrl={settings.instagramUrl}
           tiktokUrl={settings.tiktokUrl}
           whatsappNumber={settings.whatsappNumber}

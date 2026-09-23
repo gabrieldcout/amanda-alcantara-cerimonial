@@ -17,12 +17,14 @@ const NAV_LINKS = [
 
 export function Footer({
   siteName,
+  siteNameHtml,
   instagramUrl,
   tiktokUrl,
   whatsappNumber,
   email,
 }: {
   siteName: string;
+  siteNameHtml: string;
   instagramUrl?: string | null;
   tiktokUrl?: string | null;
   whatsappNumber?: string | null;
@@ -34,7 +36,10 @@ export function Footer({
     <footer className="mt-24 border-t border-border bg-muted/50">
       <Container className="grid gap-10 py-14 sm:grid-cols-3">
         <div>
-          <p className="font-serif-display text-xl text-foreground">{siteName}</p>
+          <div
+            className="rich-text font-serif-display text-xl text-foreground"
+            dangerouslySetInnerHTML={{ __html: siteNameHtml }}
+          />
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
             Assessoria intencional, estratégica e personalizada para quem
             deseja viver o grande dia.

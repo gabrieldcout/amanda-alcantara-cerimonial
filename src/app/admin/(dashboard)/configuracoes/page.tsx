@@ -2,6 +2,7 @@ import { getSiteSettings } from "@/lib/data";
 import { updateSiteSettings } from "@/lib/actions/settings";
 import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
 
 export default async function AdminConfiguracoesPage() {
   const settings = await getSiteSettings();
@@ -22,30 +23,13 @@ export default async function AdminConfiguracoesPage() {
         className="flex flex-col gap-5 rounded-2xl border border-border bg-card p-6"
       >
         <AdminField label="Título principal (hero)" name="heroTitle">
-          <input
-            name="heroTitle"
-            required
-            defaultValue={settings.heroTitle}
-            className="input"
-          />
+          <RichTextEditor name="heroTitle" defaultValue={settings.heroTitle} rows={1} />
         </AdminField>
         <AdminField label="Subtítulo (hero)" name="heroSubtitle">
-          <textarea
-            name="heroSubtitle"
-            required
-            rows={2}
-            defaultValue={settings.heroSubtitle}
-            className="input resize-none"
-          />
+          <RichTextEditor name="heroSubtitle" defaultValue={settings.heroSubtitle} rows={2} />
         </AdminField>
         <AdminField label="Texto 'Sobre'" name="aboutText">
-          <textarea
-            name="aboutText"
-            required
-            rows={4}
-            defaultValue={settings.aboutText}
-            className="input resize-none"
-          />
+          <RichTextEditor name="aboutText" defaultValue={settings.aboutText} rows={4} />
         </AdminField>
         <AdminField label="Link do Instagram" name="instagramUrl">
           <input
