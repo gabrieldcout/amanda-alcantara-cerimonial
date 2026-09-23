@@ -3,9 +3,9 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
-import { testimonialSchema } from "@/lib/validations";
+import { publicTestimonialSchema, testimonialSchema } from "@/lib/validations";
 import { saveUploadedPhoto } from "@/lib/uploads";
-import { sanitizeRichText } from "@/lib/sanitizeHtml";
+import { plainTextToSafeHtml, sanitizeRichText } from "@/lib/sanitizeHtml";
 
 function parseForm(formData: FormData) {
   return testimonialSchema.parse({
@@ -51,6 +51,43 @@ export async function updateTestimonial(id: string, formData: FormData) {
   revalidatePath("/admin/depoimentos");
   revalidatePath("/depoimentos");
   revalidatePath("/");
+}
+
+export type SubmitTestimonialState = {
+  error?: string;
+  success?: boolean;
+};
+
+export async function submitTestimonial(
+  _prevState: SubmitTestimonialState,
+  formData: FormData,
+): Promise<SubmitTestimonialState> {
+  const parsed = publicTestimonialSchema.safeParse({
+    clientName: formData.get("clientName"),
+    eventType: formData.get("eventType"),
+    quote: formData.get("quote"),
+    rating: formData.get("rating"),
+  });
+
+  if (!parsed.success) {
+    return { error: parsed.error.issues[0]?.message ?? "Dados inválidos." };
+  }
+
+  const photoUrl = await saveUploadedPhoto(formData.get("photo"));
+
+  await prisma.testimonial.create({
+    data: {
+      clientName: parsed.data.clientName,
+      eventType: parsed.data.eventType || null,
+      quote: plainTextToSafeHtml(parsed.data.quote),
+      rating: parsed.data.rating,
+      photoUrl,
+      published: false,
+    },
+  });
+
+  revalidatePath("/admin/depoimentos");
+  return { success: true };
 }
 
 export async function deleteTestimonial(id: string) {

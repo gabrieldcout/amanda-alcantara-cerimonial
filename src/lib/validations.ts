@@ -91,6 +91,13 @@ export const testimonialSchema = z.object({
   order: z.coerce.number().int().default(0),
 });
 
+export const publicTestimonialSchema = z.object({
+  clientName: z.string().trim().min(2, "Informe seu nome"),
+  eventType: z.string().trim().optional().or(z.literal("")),
+  quote: z.string().trim().min(5, "Escreva um pouco sobre sua experiência"),
+  rating: z.coerce.number().int().min(1).max(5),
+});
+
 export const teamMemberSchema = z.object({
   name: z.string().trim().min(2, "Informe o nome"),
   role: z.string().trim().min(2, "Informe o cargo/função"),

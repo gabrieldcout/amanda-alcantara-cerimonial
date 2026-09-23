@@ -15,11 +15,16 @@ export default async function DepoimentosPage() {
   return (
     <Container className="py-20 sm:py-28">
       <div className="flex flex-col gap-14 rounded-3xl bg-accent/25 p-6 sm:p-10 lg:p-14">
-        <SectionHeading
-          eyebrow="Depoimentos"
-          title="Feedback de quem viveu o grande dia"
-          subtitle="A opinião de quem viveu a experiência é o que mais importa."
-        />
+        <div className="flex flex-col items-center gap-5 text-center">
+          <SectionHeading
+            eyebrow="Depoimentos"
+            title="Feedback de quem viveu o grande dia"
+            subtitle="A opinião de quem viveu a experiência é o que mais importa."
+          />
+          <ButtonLink href="/depoimentos/novo" variant="outline">
+            Já foi nossa cliente? Deixe seu depoimento
+          </ButtonLink>
+        </div>
 
         {testimonials.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

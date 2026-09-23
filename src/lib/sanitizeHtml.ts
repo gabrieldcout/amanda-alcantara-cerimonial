@@ -9,3 +9,13 @@ export function sanitizeRichText(html: string | null | undefined): string {
     ALLOWED_ATTR: ["style"],
   });
 }
+
+// Usado em texto digitado por visitantes (ex: depoimento público) — não
+// confia em nenhuma tag vinda do formulário, só preserva quebras de linha.
+export function plainTextToSafeHtml(text: string): string {
+  const plain = DOMPurify.sanitize(text, { ALLOWED_TAGS: [] });
+  return plain
+    .split(/\n{2,}/)
+    .map((paragraph) => `<p>${paragraph.trim().replace(/\n/g, "<br>")}</p>`)
+    .join("");
+}
