@@ -2,7 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WeddingCountdown } from "@/components/site/WeddingCountdown";
-import { getUpcomingCouple } from "@/lib/data";
+import { getUpcomingCouple, getSiteSettings } from "@/lib/data";
 
 const ASSESSORIA_CARDS = [
   {
@@ -75,7 +75,10 @@ const VOCE_SE_IDENTIFICA = [
 ];
 
 export default async function HomePage() {
-  const upcomingCouple = await getUpcomingCouple();
+  const [upcomingCouple, settings] = await Promise.all([
+    getUpcomingCouple(),
+    getSiteSettings(),
+  ]);
 
   return (
     <>
@@ -92,12 +95,14 @@ export default async function HomePage() {
           <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
             Assessoria Cerimonial
           </span>
-          <h1 className="max-w-3xl font-serif-display text-4xl leading-tight text-foreground sm:text-6xl">
-            Amanda Alcântara
-          </h1>
-          <p className="font-serif-display text-xl italic text-accent-dark sm:text-2xl">
-            bem mais que uma assessoria
-          </p>
+          <h1
+            className="rich-text max-w-3xl font-serif-display text-4xl leading-tight text-foreground sm:text-6xl"
+            dangerouslySetInnerHTML={{ __html: settings.heroTitle }}
+          />
+          <div
+            className="rich-text font-serif-display text-xl italic text-accent-dark sm:text-2xl"
+            dangerouslySetInnerHTML={{ __html: settings.heroSubtitle }}
+          />
           <p className="max-w-xl text-lg text-foreground">
             Experiências bem construídas não acontecem por acaso. Elas
             nascem da sensibilidade em perceber o que realmente importa, da
