@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import {
@@ -6,6 +7,7 @@ import {
   addCoupleMedia,
   deleteCoupleMedia,
 } from "@/lib/actions/couples";
+import { createChecklist } from "@/lib/actions/checklists";
 import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
@@ -20,7 +22,10 @@ export default async function EditCouplePage({
   const { id } = await params;
   const couple = await prisma.couple.findUnique({
     where: { id },
-    include: { media: { orderBy: { order: "asc" } } },
+    include: {
+      media: { orderBy: { order: "asc" } },
+      checklist: { select: { id: true } },
+    },
   });
   if (!couple) notFound();
 
@@ -85,23 +90,73 @@ export default async function EditCouplePage({
         <AdminField label="Ordem de exibição" name="order">
           <input name="order" type="number" defaultValue={couple.order} className="input" />
         </AdminField>
-        <label className="flex items-center gap-2 self-end pb-2 text-sm">
-          <input
-            type="checkbox"
-            name="published"
-            defaultChecked={couple.published}
-            className="h-4 w-4"
-          />
-          Publicado no site
-        </label>
+        <div className="flex flex-col gap-2 self-end pb-2 text-sm">
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              name="published"
+              defaultChecked={couple.published}
+              className="h-4 w-4"
+            />
+            Publicado no site (entra no "Próximo casamento")
+          </label>
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              name="showInStories"
+              defaultChecked={couple.showInStories}
+              className="h-4 w-4"
+            />
+            Mostrar em "Histórias reais"
+          </label>
+        </div>
         <div className="sm:col-span-2">
           <Button type="submit">Salvar alterações</Button>
         </div>
       </form>
 
+      <div className="flex flex-col gap-2 rounded-2xl border border-accent/30 bg-accent/10 p-6 text-sm">
+        <p className="font-medium text-foreground">Checklist dos noivos</p>
+        {couple.checklist ? (
+          <Link
+            href={`/admin/checklists/${couple.checklist.id}`}
+            className="self-start rounded-full bg-accent px-5 py-2 font-medium text-white hover:bg-accent-dark"
+          >
+            Abrir checklist
+          </Link>
+        ) : couple.weddingDate ? (
+          <>
+            <p className="text-muted-foreground">
+              Esse casal ainda não tem checklist.
+            </p>
+            <form action={createChecklist.bind(null, id)} className="flex flex-col gap-3">
+              <label className="flex items-center gap-2 text-xs text-muted-foreground">
+                <input type="checkbox" name="useTemplate" defaultChecked className="h-4 w-4" />
+                Começar com o cronograma padrão (desmarque pra montar do zero)
+              </label>
+              <button
+                type="submit"
+                className="self-start rounded-full bg-accent px-5 py-2 font-medium text-white hover:bg-accent-dark"
+              >
+                Fazer checklist
+              </button>
+            </form>
+          </>
+        ) : (
+          <p className="text-muted-foreground">
+            Preencha a <strong>data do casamento</strong> acima e salve pra
+            liberar o checklist desse casal.
+          </p>
+        )}
+      </div>
+
       <form action={deleteCouple.bind(null, id)} className="self-start">
         <DeleteButton
-          confirmText="Excluir este casal e toda a mídia associada?"
+          confirmText={
+            couple.checklist
+              ? "Excluir este casal, toda a mídia E o checklist dos noivos? O link do checklist vai parar de funcionar."
+              : "Excluir este casal e toda a mídia associada?"
+          }
           label="Excluir casal"
         />
       </form>

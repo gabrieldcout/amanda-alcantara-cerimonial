@@ -50,6 +50,7 @@ export const coupleSchema = z.object({
   weddingDate: z.string().trim().optional().or(z.literal("")),
   story: z.string().trim().optional().or(z.literal("")),
   published: z.coerce.boolean(),
+  showInStories: z.coerce.boolean(),
   order: z.coerce.number().int().default(0),
 });
 

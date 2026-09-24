@@ -86,10 +86,16 @@ export default async function AdminCasaisPage() {
         <AdminField label="Ordem de exibição" name="order">
           <input name="order" type="number" defaultValue={0} className="input" />
         </AdminField>
-        <label className="flex items-center gap-2 self-end pb-2 text-sm">
-          <input type="checkbox" name="published" defaultChecked className="h-4 w-4" />
-          Publicado no site
-        </label>
+        <div className="flex flex-col gap-2 self-end pb-2 text-sm">
+          <label className="flex items-center gap-2">
+            <input type="checkbox" name="published" defaultChecked className="h-4 w-4" />
+            Publicado no site (entra no "Próximo casamento")
+          </label>
+          <label className="flex items-center gap-2">
+            <input type="checkbox" name="showInStories" className="h-4 w-4" />
+            Mostrar em "Histórias reais"
+          </label>
+        </div>
         <div className="sm:col-span-2">
           <Button type="submit">Adicionar casal</Button>
         </div>
@@ -116,6 +122,7 @@ export default async function AdminCasaisPage() {
               </p>
               <p className="text-sm text-muted-foreground">
                 {couple._count.media} arquivo(s) de mídia
+                {couple.published && couple.showInStories && " · em Histórias reais"}
               </p>
             </div>
             <span

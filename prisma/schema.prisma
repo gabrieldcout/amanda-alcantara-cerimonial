@@ -163,10 +163,14 @@ model Couple {
   coverUrl    String?
   story       String?
   published   Boolean   @default(true)
+  // Se aparece na página "Histórias reais" (/casais). Independente disso,
+  // um casal publicado com data futura entra no "Próximo casamento" da home.
+  showInStories Boolean @default(false)
   order       Int       @default(0)
   createdAt   DateTime  @default(now())
 
-  media CoupleMedia[]
+  media     CoupleMedia[]
+  checklist ClientChecklist?
 }
 
 // ---- Bastidores ----
@@ -193,4 +197,40 @@ model CoupleMedia {
   order    Int     @default(0)
 
   @@index([coupleId])
+}
+
+// ---- Checklist dos noivos (clientes contratados) ----
+
+// Cada casal cadastrado (em "Histórias reais", com data do casamento) pode
+// ter um checklist próprio, acessado por um link privado (/checklist/<token>)
+// — sem precisar de login. Nomes e data vêm do Couple.
+model ClientChecklist {
+  id        String   @id @default(cuid())
+  coupleId  String   @unique
+  couple    Couple   @relation(fields: [coupleId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  createdAt DateTime @default(now())
+
+  items ChecklistItem[]
+}
+
+// phase: índice da fase em CHECKLIST_PHASES (src/lib/checklistTemplate.ts)
+model ChecklistItem {
+  id                    String          @id @default(cuid())
+  checklistId           String
+  checklist             ClientChecklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+  phase                 Int
+  title                 String
+  note                  String?         @db.Text
+  done                  Boolean         @default(false)
+  doneAt                DateTime?
+  priority              Boolean         @default(false)
+  // "Não se aplica": não conta no progresso nem nos atrasos.
+  notApplicable         Boolean         @default(false)
+  notApplicableByCouple Boolean         @default(false)
+  addedByCouple         Boolean         @default(false)
+  order                 Int             @default(0)
+  createdAt             DateTime        @default(now())
+
+  @@index([checklistId])
 }

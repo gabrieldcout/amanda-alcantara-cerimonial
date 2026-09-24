@@ -9,6 +9,7 @@ const LINKS = [
   { href: "/admin", label: "Dashboard", exact: true },
   { href: "/admin/orcamentos", label: "Pedidos de orçamento" },
   { href: "/admin/agenda", label: "Agenda" },
+  { href: "/admin/checklists", label: "Checklist dos noivos" },
   { href: "/admin/casais", label: "Histórias reais" },
   { href: "/admin/bastidores", label: "Bastidores" },
   { href: "/admin/comunidade/posts", label: "Comunidade · Posts" },

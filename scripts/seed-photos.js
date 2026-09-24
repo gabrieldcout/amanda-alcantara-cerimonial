@@ -17,6 +17,7 @@ async function main() {
       story:
         "Edite este perfil no painel admin com o nome real do casal e a história do casamento.",
       published: false,
+      showInStories: true,
       order: 0,
     },
   });
@@ -48,6 +49,7 @@ async function main() {
       story:
         "Edite este perfil no painel admin com o nome real do casal e a história do casamento.",
       published: false,
+      showInStories: true,
       order: 1,
     },
   });
@@ -76,6 +78,7 @@ async function main() {
       story:
         "Edite este perfil no painel admin com o nome real do casal e a história do casamento.",
       published: false,
+      showInStories: true,
       order: 2,
     },
   });

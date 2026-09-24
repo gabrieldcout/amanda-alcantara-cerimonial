@@ -13,6 +13,7 @@ export default async function AdminDashboardPage() {
     pendingComments,
     couples,
     brideUsers,
+    checklists,
   ] = await Promise.all([
     prisma.quoteRequest.count({ where: { status: "novo" } }),
     prisma.quoteRequest.count(),
@@ -24,6 +25,7 @@ export default async function AdminDashboardPage() {
     prisma.comment.count({ where: { published: false } }),
     prisma.couple.count(),
     prisma.brideUser.count(),
+    prisma.clientChecklist.count(),
   ]);
 
   const cards = [
@@ -39,6 +41,7 @@ export default async function AdminDashboardPage() {
       value: pendingComments,
       href: "/admin/comunidade/comentarios",
     },
+    { label: "Checklists de noivos", value: checklists, href: "/admin/checklists" },
     { label: "Noivas cadastradas", value: brideUsers, href: "/admin/comunidade/usuarias" },
     { label: "Casais no book", value: couples, href: "/admin/casais" },
     { label: "Depoimentos", value: testimonials, href: "/admin/depoimentos" },

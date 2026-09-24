@@ -14,6 +14,7 @@ function parseCoupleForm(formData: FormData) {
     weddingDate: formData.get("weddingDate"),
     story: formData.get("story"),
     published: formData.get("published") === "on",
+    showInStories: formData.get("showInStories") === "on",
     order: formData.get("order") || 0,
   });
 }
@@ -31,6 +32,7 @@ export async function createCouple(formData: FormData) {
     },
   });
   revalidatePath("/admin/casais");
+  revalidatePath("/admin/checklists");
   revalidatePath("/casais");
 }
 
@@ -49,6 +51,7 @@ export async function updateCouple(id: string, formData: FormData) {
   });
   revalidatePath("/admin/casais");
   revalidatePath(`/admin/casais/${id}`);
+  revalidatePath("/admin/checklists");
   revalidatePath("/casais");
   revalidatePath(`/casais/${couple.slug}`);
 }
@@ -57,6 +60,7 @@ export async function deleteCouple(id: string) {
   await requireAdmin();
   const couple = await prisma.couple.delete({ where: { id } });
   revalidatePath("/admin/casais");
+  revalidatePath("/admin/checklists");
   revalidatePath("/casais");
   revalidatePath(`/casais/${couple.slug}`);
 }

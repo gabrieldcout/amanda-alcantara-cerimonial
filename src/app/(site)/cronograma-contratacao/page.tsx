@@ -2,111 +2,11 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
+import { CHECKLIST_PHASES as PHASES } from "@/lib/checklistTemplate";
 
 export const metadata: Metadata = {
   title: "Cronograma de Contratação | Amanda Alcântara Cerimonial",
 };
-
-const PHASES = [
-  {
-    period: "12 a 18 meses antes",
-    tag: "Fase estratégica: decisões mais importantes",
-    note: "Esses são os primeiros porque tudo depende deles.",
-    items: [
-      "Definição da data",
-      "Definição do estilo do casamento",
-      "Definição do orçamento total",
-      "Contratação da assessoria/cerimonial",
-      "Escolha e contratação do local (espaço/igreja/praia/campo)",
-      "Reserva do celebrante (religioso ou simbólico)",
-      "Início da lista de convidados",
-    ],
-  },
-  {
-    period: "10 a 12 meses antes",
-    tag: "Fase estrutural",
-    items: [
-      "Buffet (se não incluso no espaço)",
-      "Fotografia",
-      "Filmagem",
-      "Decoração (empresa ou decorador)",
-      "Banda ou DJ principal",
-      "Mobiliário (mesas, cadeiras, lounges, se necessário)",
-      "Identidade visual (convites, papelaria)",
-    ],
-  },
-  {
-    period: "8 a 10 meses antes",
-    tag: "Fase técnica + experiência",
-    items: [
-      "Iluminação cênica",
-      "Sonorização completa (cerimônia + festa)",
-      "Estrutura (tenda, palco, cobertura)",
-      "Gerador de energia",
-      "Bar / drinks (bartender/mixologista)",
-      "Bolo e doces finos",
-      "Vestido da noiva (início da escolha)",
-      "Traje do noivo",
-    ],
-  },
-  {
-    period: "6 a 8 meses antes",
-    tag: "Fase estética e detalhes",
-    items: [
-      "Cabelo e maquiagem",
-      "Convites (criação e envio)",
-      "Lembranças para convidados",
-      "Louças e itens especiais (se for decoração personalizada)",
-      "Escolha da playlist ou alinhamento musical",
-      "Hospedagem para convidados (se necessário)",
-      "Transfer / logística",
-    ],
-  },
-  {
-    period: "4 a 6 meses antes",
-    tag: "Fase de confirmação",
-    items: [
-      "Prova do vestido",
-      "Definição do menu com buffet",
-      "Degustação de doces e bolo",
-      "Definição do layout do evento (planta)",
-      "Escolha das músicas da cerimônia",
-      "Contratação de atrações extras (robô de LED, saxofonista, coral etc.)",
-    ],
-  },
-  {
-    period: "2 a 4 meses antes",
-    tag: "Fase operacional",
-    items: [
-      "Envio dos convites (se ainda não enviados)",
-      "Confirmação de fornecedores contratados",
-      "Definição da ordem da cerimônia",
-      "Definição de padrinhos e cortejo",
-      "Criação do cronograma do grande dia",
-    ],
-  },
-  {
-    period: "1 mês antes",
-    tag: "Fase final",
-    items: [
-      "RSVP (confirmação de presença)",
-      "Reunião final com todos os fornecedores",
-      "Ajustes finais de layout",
-      "Definição da lista de mesas",
-      "Conferência geral de contratos",
-    ],
-  },
-  {
-    period: "15 dias antes",
-    tag: "Detalhes",
-    items: [
-      "Entrega de materiais para cerimonial",
-      "Reunião de alinhamento final",
-      "Conferência de horários de montagem",
-      "Checklist completo",
-    ],
-  },
-];
 
 const ORDEM_IDEAL = [
   "Local + data",

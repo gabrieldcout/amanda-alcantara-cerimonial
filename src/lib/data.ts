@@ -84,7 +84,7 @@ export async function getPostWithComments(postId: string, currentUserId?: string
 
 export async function getPublishedCouples() {
   return prisma.couple.findMany({
-    where: { published: true },
+    where: { published: true, showInStories: true },
     orderBy: [{ order: "asc" }, { createdAt: "desc" }],
   });
 }
@@ -98,7 +98,7 @@ export async function getPublishedBackstage() {
 
 export async function getCoupleBySlug(slug: string) {
   return prisma.couple.findFirst({
-    where: { slug, published: true },
+    where: { slug, published: true, showInStories: true },
     include: { media: { orderBy: { order: "asc" } } },
   });
 }
