@@ -25,9 +25,16 @@ export default async function CasaisPage() {
             Em breve, novos casais por aqui.
           </p>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          // Flex centralizado: com 1 ou 2 casais os cards ficam no meio em vez
+          // de encostados à esquerda; a partir de 3 preenche a linha e quebra.
+          <div className="flex flex-wrap justify-center gap-6">
             {couples.map((couple) => (
-              <CoupleCard key={couple.id} couple={couple} />
+              <div
+                key={couple.id}
+                className="w-full sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
+              >
+                <CoupleCard couple={couple} />
+              </div>
             ))}
           </div>
         )}
