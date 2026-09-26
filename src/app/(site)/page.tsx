@@ -34,7 +34,7 @@ const DESTAQUES = [
         <path d="M12 21s-6.7-4.35-9.33-8.2C.87 10.2 1.4 6.9 4.1 5.2c2.2-1.4 4.9-.8 6.5 1.1L12 7.9l1.4-1.6c1.6-1.9 4.3-2.5 6.5-1.1 2.7 1.7 3.23 5 1.43 7.6C18.7 16.65 12 21 12 21Z" />
       </svg>
     ),
-    stat: "+20",
+    stat: "+50",
     label: "Casamentos realizados",
   },
   {
@@ -213,17 +213,28 @@ export default async function HomePage() {
                 align="left"
               />
               <p className="text-muted-foreground leading-relaxed">
-                É transformar o planejamento em uma experiência tranquila e
-                inspiradora, onde o casal se sinta acolhido, confiante e
-                verdadeiramente protagonista da própria história. Com uma
-                assessoria completa, integro todos os aspectos do evento:
-                planejamento, curadoria de fornecedores, gestão de prazos e
-                contratos, construção de cronogramas e coordenação total do
-                grande dia, garantindo harmonia entre o sonho e a execução.
+                Com uma assessoria completa, eu integro todos os aspectos do
+                evento: planejamento, curadoria de fornecedores, gestão de
+                prazos e contratos, construção de cronogramas e coordenação
+                total do grande dia, garantindo harmonia entre o planejamento
+                e a execução.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                O resultado é um casamento que reflete quem vocês são:
-                autêntico, memorável e feliz.
+                É estar verdadeiramente presente em cada etapa, ouvir o que
+                vocês desejam, entender as prioridades do casal e transformar
+                tudo isso em um planejamento seguro, estratégico e possível.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Durante a assessoria, vocês terão ao lado uma profissional que
+                acompanha de perto cada decisão, antecipa necessidades,
+                organiza processos, conecta fornecedores e cuida dos detalhes
+                que muitas vezes passam despercebidos.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Meu papel é trazer clareza quando houver dúvidas, tranquilidade
+                quando surgirem imprevistos e segurança para que vocês possam
+                tomar decisões conscientes e alinhadas ao que realmente
+                importa.
               </p>
             </div>
           </div>

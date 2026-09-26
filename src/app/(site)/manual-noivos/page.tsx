@@ -16,8 +16,8 @@ const SECTIONS: {
 }[] = [
   {
     title: "Lista de Convidados",
-    image: "/fotos/manual-noivos/casal-campo.jpg",
-    alt: "Casal caminhando entre convidados",
+    image: "/fotos/inicio/lista.jpg",
+    alt: "Noivos de mãos dadas segurando a aliança",
     paragraphs: [
       "A elaboração da lista de convidados é uma das etapas mais importantes do planejamento do casamento, pois está diretamente relacionada ao orçamento, à escolha do local e à dinâmica do evento. Para facilitar a organização, recomenda-se dividir os convidados por categorias, como família da noiva, família do noivo, amigos, colegas de trabalho e convidados sociais.",
       "Essa segmentação ajuda o casal a visualizar com mais clareza o número total de pessoas e ajustar a lista conforme as prioridades e o investimento disponível. É importante considerar uma média de 10% a 15% de ausência, fator comum em eventos desse porte.",
