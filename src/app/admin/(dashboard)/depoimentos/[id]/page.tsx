@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { MediaImage } from "@/components/site/MediaImage";
 import { RichTextEditor } from "@/components/admin/RichTextEditor";
+import { PhotoInput } from "@/components/ui/PhotoInput";
 
 export default async function EditTestimonialPage({
   params,
@@ -60,7 +61,7 @@ export default async function EditTestimonialPage({
               className="mb-2 h-20 w-20 rounded-full object-cover"
             />
           )}
-          <input type="file" name="photo" accept="image/*" className="input" />
+          <PhotoInput name="photo" className="input" />
           {testimonial.photoUrl && (
             <p className="mt-1 text-xs text-muted-foreground">
               Deixe em branco pra manter a foto atual.

@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { MediaImage } from "@/components/site/MediaImage";
 import { RichTextEditor } from "@/components/admin/RichTextEditor";
+import { PhotoInput } from "@/components/ui/PhotoInput";
 
 export default async function EditCouplePage({
   params,
@@ -74,7 +75,7 @@ export default async function EditCouplePage({
                 className="mb-2 aspect-video w-full max-w-xs rounded-lg object-cover"
               />
             )}
-            <input type="file" name="photo" accept="image/*" className="input" />
+            <PhotoInput name="photo" className="input" />
             {couple.coverUrl && (
               <p className="mt-1 text-xs text-muted-foreground">
                 Deixe em branco pra manter a foto atual.
@@ -177,7 +178,7 @@ export default async function EditCouplePage({
             </select>
           </AdminField>
           <AdminField label="Foto (se o tipo for Foto)" name="photo">
-            <input type="file" name="photo" accept="image/*" className="input" />
+            <PhotoInput name="photo" className="input" />
           </AdminField>
           <div className="sm:col-span-2">
             <AdminField label="URL do vídeo (se o tipo for Vídeo — YouTube, Vimeo ou link direto)" name="url">

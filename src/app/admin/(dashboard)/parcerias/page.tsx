@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { createPartner } from "@/lib/actions/partners";
 import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
+import { PhotoInput } from "@/components/ui/PhotoInput";
 
 export default async function AdminParceriasPage() {
   const partners = await prisma.partner.findMany({
@@ -32,7 +33,7 @@ export default async function AdminParceriasPage() {
           <input name="category" placeholder="Ex: Fotografia" className="input" />
         </AdminField>
         <AdminField label="Logo (opcional)" name="photo">
-          <input type="file" name="photo" accept="image/*" className="input" />
+          <PhotoInput name="photo" className="input" />
         </AdminField>
         <AdminField label="Site / Instagram (opcional)" name="website">
           <input name="website" placeholder="https://..." className="input" />

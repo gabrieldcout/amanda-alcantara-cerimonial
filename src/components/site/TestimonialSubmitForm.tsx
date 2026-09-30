@@ -6,6 +6,7 @@ import {
   type SubmitTestimonialState,
 } from "@/lib/actions/testimonials";
 import { Button } from "@/components/ui/Button";
+import { PhotoInput } from "@/components/ui/PhotoInput";
 
 const initialState: SubmitTestimonialState = {};
 
@@ -72,7 +73,7 @@ export function TestimonialSubmitForm({ defaultName }: { defaultName?: string })
 
       <label className="flex flex-col gap-1.5 text-sm sm:col-span-2">
         <span className="font-medium text-foreground">Uma foto sua (opcional)</span>
-        <input type="file" name="photo" accept="image/*" className="input" />
+        <PhotoInput name="photo" className="input" />
       </label>
 
       {state.error && <p className="text-sm text-red-600 sm:col-span-2">{state.error}</p>}

@@ -4,6 +4,7 @@ import { createTeamMember } from "@/lib/actions/team";
 import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { RichTextEditor } from "@/components/admin/RichTextEditor";
+import { PhotoInput } from "@/components/ui/PhotoInput";
 
 export default async function AdminEquipePage() {
   const team = await prisma.teamMember.findMany({
@@ -38,7 +39,7 @@ export default async function AdminEquipePage() {
           </AdminField>
         </div>
         <AdminField label="Foto (opcional)" name="photo">
-          <input type="file" name="photo" accept="image/*" className="input" />
+          <PhotoInput name="photo" className="input" />
         </AdminField>
         <AdminField label="Ordem de exibição" name="order">
           <input name="order" type="number" defaultValue={0} className="input" />

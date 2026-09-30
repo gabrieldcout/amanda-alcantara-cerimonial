@@ -5,6 +5,7 @@ import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { MediaImage } from "@/components/site/MediaImage";
+import { PhotoInput } from "@/components/ui/PhotoInput";
 
 export default async function AdminGaleriaPage() {
   const images = await prisma.galleryImage.findMany({
@@ -29,7 +30,7 @@ export default async function AdminGaleriaPage() {
         <p className="font-medium text-foreground sm:col-span-2">Nova foto</p>
         <div className="sm:col-span-2">
           <AdminField label="Foto" name="photo">
-            <input type="file" name="photo" accept="image/*" required className="input" />
+            <PhotoInput name="photo" required className="input" />
           </AdminField>
         </div>
         <AdminField label="Legenda (opcional)" name="caption">

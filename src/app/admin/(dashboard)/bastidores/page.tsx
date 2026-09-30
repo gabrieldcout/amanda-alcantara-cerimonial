@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { MediaImage } from "@/components/site/MediaImage";
 import { VideoEmbed } from "@/components/site/VideoEmbed";
+import { PhotoInput } from "@/components/ui/PhotoInput";
 
 export default async function AdminBastidoresPage() {
   const items = await prisma.backstageMedia.findMany({
@@ -42,7 +43,7 @@ export default async function AdminBastidoresPage() {
           <input name="order" type="number" defaultValue={0} className="input" />
         </AdminField>
         <AdminField label="Foto (se o tipo for Foto)" name="photo">
-          <input type="file" name="photo" accept="image/*" className="input" />
+          <PhotoInput name="photo" className="input" />
         </AdminField>
         <div className="sm:col-span-2">
           <AdminField

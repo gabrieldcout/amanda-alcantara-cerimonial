@@ -5,6 +5,7 @@ import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { MediaImage } from "@/components/site/MediaImage";
+import { PhotoInput } from "@/components/ui/PhotoInput";
 
 export default async function EditPartnerPage({
   params,
@@ -39,7 +40,7 @@ export default async function EditPartnerPage({
               className="mb-2 h-16 w-16 rounded-lg object-contain"
             />
           )}
-          <input type="file" name="photo" accept="image/*" className="input" />
+          <PhotoInput name="photo" className="input" />
           {partner.logoUrl && (
             <p className="mt-1 text-xs text-muted-foreground">
               Deixe em branco pra manter o logo atual.

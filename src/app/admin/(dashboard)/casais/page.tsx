@@ -4,6 +4,7 @@ import { createCouple } from "@/lib/actions/couples";
 import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { RichTextEditor } from "@/components/admin/RichTextEditor";
+import { PhotoInput } from "@/components/ui/PhotoInput";
 
 export default async function AdminCasaisPage() {
   const couples = await prisma.couple.findMany({
@@ -76,7 +77,7 @@ export default async function AdminCasaisPage() {
           <input name="weddingDate" type="date" className="input" />
         </AdminField>
         <AdminField label="Foto de capa (opcional)" name="photo">
-          <input type="file" name="photo" accept="image/*" className="input" />
+          <PhotoInput name="photo" className="input" />
         </AdminField>
         <div className="sm:col-span-2">
           <AdminField label="História do casal (opcional)" name="story">

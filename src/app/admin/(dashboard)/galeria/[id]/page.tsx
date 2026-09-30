@@ -5,6 +5,7 @@ import { AdminField } from "@/components/admin/AdminField";
 import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { MediaImage } from "@/components/site/MediaImage";
+import { PhotoInput } from "@/components/ui/PhotoInput";
 
 export default async function EditGalleryImagePage({
   params,
@@ -31,7 +32,7 @@ export default async function EditGalleryImagePage({
       >
         <div className="sm:col-span-2">
           <AdminField label="Foto" name="photo">
-            <input type="file" name="photo" accept="image/*" className="input" />
+            <PhotoInput name="photo" className="input" />
             <p className="mt-1 text-xs text-muted-foreground">
               Deixe em branco pra manter a foto atual.
             </p>
