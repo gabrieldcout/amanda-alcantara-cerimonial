@@ -98,6 +98,13 @@ const TOPICS: Topic[] = [
     ],
   },
   {
+    title: "Fotos do site",
+    items: [
+      "Troca as fotos fixas da página inicial: topo, Sobre mim, O meu compromisso, Sobre a minha assessoria e a chamada final.",
+      "Escolha a nova foto do celular ou computador e clique em \"Trocar foto\". Se não gostar, use \"Voltar para a foto original\".",
+    ],
+  },
+  {
     title: "Configurações do site",
     items: [
       "Textos gerais do site: título do hero, texto sobre você, e os contatos (Instagram, TikTok, WhatsApp, e-mail).",

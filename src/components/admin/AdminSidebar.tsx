@@ -19,6 +19,7 @@ const LINKS = [
   { href: "/admin/equipe", label: "Equipe" },
   { href: "/admin/parcerias", label: "Parcerias" },
   { href: "/admin/galeria", label: "Galeria / Portfólio" },
+  { href: "/admin/fotos", label: "Fotos do site" },
   { href: "/admin/configuracoes", label: "Configurações do site" },
   { href: "/admin/tutorial", label: "Tutorial" },
 ];

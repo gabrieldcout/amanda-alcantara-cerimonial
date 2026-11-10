@@ -234,3 +234,11 @@ model ChecklistItem {
 
   @@index([checklistId])
 }
+
+// Fotos fixas da home (hero, Sobre mim, Meu compromisso...). `slot` é a chave
+// definida em src/lib/sitePhotos.ts; sem linha aqui, vale a foto padrão.
+model SitePhoto {
+  slot      String   @id
+  url       String
+  updatedAt DateTime @updatedAt
+}

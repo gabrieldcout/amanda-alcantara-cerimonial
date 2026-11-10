@@ -3,6 +3,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WeddingCountdown } from "@/components/site/WeddingCountdown";
 import { getUpcomingCouple, getSiteSettings } from "@/lib/data";
+import { getSitePhotos } from "@/lib/sitePhotos";
 
 const ASSESSORIA_CARDS = [
   {
@@ -75,9 +76,10 @@ const VOCE_SE_IDENTIFICA = [
 ];
 
 export default async function HomePage() {
-  const [upcomingCouple, settings] = await Promise.all([
+  const [upcomingCouple, settings, photos] = await Promise.all([
     getUpcomingCouple(),
     getSiteSettings(),
+    getSitePhotos(),
   ]);
 
   return (
@@ -86,7 +88,7 @@ export default async function HomePage() {
       <section className="relative overflow-hidden bg-muted/40">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/fotos/sobre-mim/por-do-sol-caminhando.jpg"
+          src={photos.hero}
           alt=""
           className="absolute inset-0 h-full w-full scale-105 object-cover opacity-[0.55] blur-[1px]"
         />
@@ -157,7 +159,7 @@ export default async function HomePage() {
           <div className="grid gap-8 rounded-3xl bg-accent/25 p-6 sm:grid-cols-2 sm:items-center sm:gap-10 sm:p-10 lg:p-14">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/fotos/sobre-mim/amanda-poltrona.jpg"
+              src={photos["sobre-mim"]}
               alt="Amanda Alcântara"
               className="aspect-[4/5] w-full rounded-2xl object-cover"
             />
@@ -195,13 +197,13 @@ export default async function HomePage() {
             <div className="grid grid-cols-2 gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/fotos/sobre-mim/casal-cerimonia-1.jpg"
+                src={photos["compromisso-1"]}
                 alt="Casal no dia do casamento"
                 className="aspect-[3/4] w-full rounded-2xl object-cover"
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/fotos/sobre-mim/casal-beijo-noite.jpg"
+                src={photos["compromisso-2"]}
                 alt="Casal se abraçando ao entardecer"
                 className="mt-8 aspect-[3/4] w-full rounded-2xl object-cover"
               />
@@ -252,14 +254,14 @@ export default async function HomePage() {
             />
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               {[
-                { src: "/fotos/sobre-mim/mesa-posta.jpg", alt: "Mesa posta com detalhes" },
-                { src: "/fotos/sobre-mim/criancas-girassois.jpg", alt: "Pajens com girassóis" },
-                { src: "/fotos/sobre-mim/ajustando-vestido-janela.jpg", alt: "Ajustando o vestido da noiva" },
-                { src: "/fotos/sobre-mim/noiva-madrinha-noite.jpg", alt: "Noiva e madrinha à noite" },
+                { src: photos["assessoria-1"], alt: "Mesa posta com detalhes" },
+                { src: photos["assessoria-2"], alt: "Pajens com girassóis" },
+                { src: photos["assessoria-3"], alt: "Ajustando o vestido da noiva" },
+                { src: photos["assessoria-4"], alt: "Noiva e madrinha à noite" },
               ].map((img) => (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  key={img.src}
+                  key={img.alt}
                   src={img.src}
                   alt={img.alt}
                   className="aspect-[3/4] w-full rounded-xl object-cover"
@@ -348,7 +350,7 @@ export default async function HomePage() {
       <section className="relative overflow-hidden border-t border-border py-20 text-center text-white">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/fotos/sobre-mim/celebracao-confete.jpg"
+          src={photos["cta-final"]}
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
         />
