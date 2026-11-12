@@ -13,7 +13,7 @@ export async function approvePost(id: string) {
 
 export async function deletePostAdmin(id: string) {
   await requireAdmin();
-  await prisma.post.delete({ where: { id } });
+  await prisma.post.deleteMany({ where: { id } });
   revalidatePath("/admin/comunidade/posts");
   revalidatePath("/comunidade");
 }
@@ -26,7 +26,7 @@ export async function approveComment(id: string) {
 
 export async function deleteCommentAdmin(id: string) {
   await requireAdmin();
-  await prisma.comment.delete({ where: { id } });
+  await prisma.comment.deleteMany({ where: { id } });
   revalidatePath("/admin/comunidade/comentarios");
 }
 
