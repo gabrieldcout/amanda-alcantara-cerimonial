@@ -1,12 +1,31 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
+
+const RELOAD_FLAG = "admin-stale-action-reload";
 
 export default function AdminError({
   error,
 }: {
   error: Error & { digest?: string };
 }) {
+  // Página aberta antes de um deploy: as ações antigas não existem mais no
+  // servidor. Recarrega uma vez sozinha pra pegar a versão nova.
+  const isStaleAction = /Server Action/i.test(error.message);
+  useEffect(() => {
+    if (!isStaleAction) return;
+    // Evita loop: só recarrega se não recarregou nos últimos 30s.
+    try {
+      const last = Number(sessionStorage.getItem(RELOAD_FLAG) || 0);
+      if (Date.now() - last < 30_000) return;
+      sessionStorage.setItem(RELOAD_FLAG, String(Date.now()));
+    } catch {
+      return;
+    }
+    window.location.reload();
+  }, [isStaleAction]);
+
   return (
     <div className="flex max-w-xl flex-col gap-4 rounded-2xl border border-border bg-card p-6">
       <h1 className="font-serif-display text-2xl text-foreground">

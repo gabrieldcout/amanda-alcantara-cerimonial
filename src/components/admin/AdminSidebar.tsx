@@ -22,6 +22,7 @@ const LINKS = [
   { href: "/admin/fotos", label: "Fotos do site" },
   { href: "/admin/configuracoes", label: "Configurações do site" },
   { href: "/admin/tutorial", label: "Tutorial" },
+  { href: "/admin/erros", label: "Erros do site" },
 ];
 
 function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
