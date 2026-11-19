@@ -242,3 +242,11 @@ model SitePhoto {
   url       String
   updatedAt DateTime @updatedAt
 }
+
+// Textos da home editáveis no painel. `key` é definida em src/lib/siteTexts.ts;
+// sem linha aqui, vale o texto padrão.
+model SiteText {
+  key       String   @id
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}

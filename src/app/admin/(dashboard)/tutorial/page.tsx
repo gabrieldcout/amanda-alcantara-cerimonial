@@ -98,6 +98,13 @@ const TOPICS: Topic[] = [
     ],
   },
   {
+    title: "Textos do site",
+    items: [
+      "Muda os títulos e textos da página inicial, seção por seção.",
+      "Nos textos maiores, deixe uma linha em branco para começar um parágrafo novo. Se apagar tudo de um campo, ele volta para o texto original.",
+    ],
+  },
+  {
     title: "Fotos do site",
     items: [
       "Troca as fotos fixas da página inicial: topo, Sobre mim, O meu compromisso, Sobre a minha assessoria e a chamada final.",
