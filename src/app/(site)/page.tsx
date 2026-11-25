@@ -2,34 +2,10 @@ import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WeddingCountdown } from "@/components/site/WeddingCountdown";
+import { GalleryStrip } from "@/components/site/GalleryStrip";
 import { getUpcomingCouple, getSiteSettings } from "@/lib/data";
-import { getSitePhotos } from "@/lib/sitePhotos";
+import { getGalleryStrips, getSitePhotos } from "@/lib/sitePhotos";
 import { getSiteTexts, paragraphs } from "@/lib/siteTexts";
-
-// Ícones dos destaques; número e texto vêm de Textos do site.
-const DESTAQUE_ICONS = [
-  (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-        <path d="M12 21s-6.7-4.35-9.33-8.2C.87 10.2 1.4 6.9 4.1 5.2c2.2-1.4 4.9-.8 6.5 1.1L12 7.9l1.4-1.6c1.6-1.9 4.3-2.5 6.5-1.1 2.7 1.7 3.23 5 1.43 7.6C18.7 16.65 12 21 12 21Z" />
-      </svg>
-  ),
-  (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-        <path d="M12 2 2 7l10 5 10-5-10-5Zm0 7L2 14l10 5 10-5-10-5Z" />
-      </svg>
-  ),
-  (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-        <path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm-8 0a3.5 3.5 0 1 0-3.5-3.5A3.5 3.5 0 0 0 8 11Zm0 2c-2.67 0-8 1.34-8 4v3h9.28A5.98 5.98 0 0 1 9 16c0-1.5.53-2.88 1.4-4A11.6 11.6 0 0 0 8 13Zm8 0c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4Z" />
-      </svg>
-  ),
-  (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-        <path d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2Zm12 8v10H5V10Zm-9.6 7.6 4.9-4.9-1.4-1.4-3.5 3.5-1.5-1.5-1.4 1.4Z" />
-      </svg>
-  ),
-];
-
 
 function Paragraphs({ text, className }: { text: string; className: string }) {
   return paragraphs(text).map((p, i) => (
@@ -53,11 +29,12 @@ const ASSESSORIA_SLOTS = [
 ] as const;
 
 export default async function HomePage() {
-  const [upcomingCouple, settings, photos, t] = await Promise.all([
+  const [upcomingCouple, settings, photos, t, strips] = await Promise.all([
     getUpcomingCouple(),
     getSiteSettings(),
     getSitePhotos(),
     getSiteTexts(),
+    getGalleryStrips(),
   ]);
 
   return (
@@ -93,19 +70,19 @@ export default async function HomePage() {
         </Container>
       </section>
 
+      <GalleryStrip items={strips["faixa-1"]} layout="row" />
+
       {/* Próximo casamento */}
       {upcomingCouple && (
         <section className="py-14 sm:py-20">
           <Container>
-            <div className="grid gap-8 rounded-3xl bg-accent/25 p-6 sm:grid-cols-2 sm:items-center sm:gap-10 sm:p-10 lg:p-14">
-              <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-background">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={upcomingCouple.coverUrl ?? undefined}
-                  alt={upcomingCouple.names}
-                  className="h-auto w-full object-contain"
-                />
-              </div>
+            <div className="grid gap-8 sm:grid-cols-2 sm:items-center sm:gap-14">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={upcomingCouple.coverUrl ?? undefined}
+                alt={upcomingCouple.names}
+                className="mx-auto h-auto w-full max-w-sm rounded-lg object-contain"
+              />
               <div className="flex flex-col items-start gap-5">
                 <SectionHeading
                   eyebrow="Próximo casamento"
@@ -126,176 +103,179 @@ export default async function HomePage() {
         </section>
       )}
 
-
       {/* Sobre mim */}
-      <section className="py-14 sm:py-20">
-        <Container>
-          <div className="grid gap-8 rounded-3xl bg-accent/25 p-6 sm:grid-cols-2 sm:items-center sm:gap-10 sm:p-10 lg:p-14">
-            <div className="grid grid-cols-2 gap-4">
+      <section className="py-14 sm:py-24">
+        <Container className="max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={photos["sobre-mim"]}
                 alt="Amanda Alcântara"
-                className="col-span-2 aspect-[4/5] w-full rounded-2xl object-cover"
+                className="col-span-2 aspect-[4/5] w-full rounded-lg object-cover"
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={photos["sobre-mim-2"]}
                 alt="Amanda planejando um evento"
-                className="aspect-square w-full rounded-2xl object-cover"
+                className="aspect-square w-full rounded-lg object-cover"
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={photos["sobre-mim-3"]}
                 alt="Amanda trabalhando"
-                className="aspect-square w-full rounded-2xl object-cover"
+                className="aspect-square w-full rounded-lg object-cover"
               />
             </div>
             <div className="flex flex-col gap-5">
               <SectionHeading eyebrow={t["sobre.eyebrow"]} title={t["sobre.title"]} align="left" />
-              <Paragraphs text={t["sobre.text"]} className="text-muted-foreground leading-relaxed" />
+              <Paragraphs text={t["sobre.text"]} className="leading-relaxed text-muted-foreground" />
             </div>
           </div>
         </Container>
       </section>
 
+      <GalleryStrip items={strips["faixa-2"]} layout="mosaic" />
+
       {/* O meu compromisso */}
-      <section className="py-14 sm:py-20">
-        <Container>
-          <div className="grid gap-8 rounded-3xl bg-accent/25 p-6 sm:grid-cols-2 sm:items-center sm:p-10 lg:p-14">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={photos["compromisso-1"]}
-                  alt="Casal no dia do casamento"
-                  className="aspect-[3/4] w-full rounded-2xl object-cover"
-                />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={photos["compromisso-3"]}
-                  alt="Noiva sorrindo"
-                  className="aspect-[3/4] w-full rounded-2xl object-cover"
-                />
-              </div>
-              <div className="mt-8 flex flex-col gap-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={photos["compromisso-2"]}
-                  alt="Casal se abraçando ao entardecer"
-                  className="aspect-[3/4] w-full rounded-2xl object-cover"
-                />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={photos["compromisso-4"]}
-                  alt="Cerimônia de casamento"
-                  className="aspect-[3/4] w-full rounded-2xl object-cover"
-                />
-              </div>
-            </div>
+      <section className="py-14 sm:py-24">
+        <Container className="max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
             <div className="flex flex-col gap-5">
               <SectionHeading
                 eyebrow={t["compromisso.eyebrow"]}
                 title={t["compromisso.title"]}
                 align="left"
               />
-              <Paragraphs text={t["compromisso.text"]} className="text-muted-foreground leading-relaxed" />
+              <Paragraphs
+                text={t["compromisso.text"]}
+                className="leading-relaxed text-muted-foreground"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="flex flex-col gap-3 sm:gap-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photos["compromisso-1"]}
+                  alt="Casal no dia do casamento"
+                  className="aspect-[3/4] w-full rounded-lg object-cover"
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photos["compromisso-3"]}
+                  alt="Noiva sorrindo"
+                  className="aspect-[3/4] w-full rounded-lg object-cover"
+                />
+              </div>
+              <div className="mt-10 flex flex-col gap-3 sm:gap-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photos["compromisso-2"]}
+                  alt="Casal se abraçando ao entardecer"
+                  className="aspect-[3/4] w-full rounded-lg object-cover"
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photos["compromisso-4"]}
+                  alt="Cerimônia de casamento"
+                  className="aspect-[3/4] w-full rounded-lg object-cover"
+                />
+              </div>
             </div>
           </div>
         </Container>
       </section>
 
       {/* Sobre a minha assessoria */}
-      <section className="py-14 sm:py-20">
-        <Container>
-          <div className="flex flex-col gap-10 rounded-3xl bg-accent/25 p-6 sm:p-10 lg:p-14">
-            <SectionHeading
-              eyebrow={t["assessoria.eyebrow"]}
-              title={t["assessoria.title"]}
-              subtitle={t["assessoria.subtitle"]}
-            />
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {ASSESSORIA_SLOTS.map((slot) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={slot}
-                  src={photos[slot]}
-                  alt="Momento de casamento assessorado pela Amanda"
-                  className="aspect-[3/4] w-full rounded-xl object-cover"
-                />
-              ))}
-            </div>
+      <section className="py-14 sm:py-24">
+        <Container className="flex max-w-7xl flex-col gap-10">
+          <SectionHeading
+            eyebrow={t["assessoria.eyebrow"]}
+            title={t["assessoria.title"]}
+            subtitle={t["assessoria.subtitle"]}
+          />
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+            {ASSESSORIA_SLOTS.map((slot) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={slot}
+                src={photos[slot]}
+                alt="Momento de casamento assessorado pela Amanda"
+                className="aspect-[3/4] w-full rounded-lg object-cover"
+              />
+            ))}
           </div>
         </Container>
       </section>
 
+      <GalleryStrip items={strips["faixa-3"]} layout="row" />
+
       {/* Como te acompanho */}
-      <section className="bg-muted/40 py-20 sm:py-28">
-        <Container className="flex flex-col gap-10">
+      <section className="py-14 sm:py-24">
+        <Container className="flex flex-col gap-12">
           <SectionHeading
             eyebrow={t["acompanho.eyebrow"]}
             title={t["acompanho.title"]}
             titleClassName="text-black font-bold"
           />
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ol className="mx-auto flex w-full max-w-3xl flex-col">
             {CARD_KEYS.map((n) => (
-              <div
+              <li
                 key={n}
-                className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6"
+                className="grid gap-2 border-t border-border py-8 first:border-t-0 first:pt-0 sm:grid-cols-[4rem_1fr] sm:gap-6"
               >
-                <h3 className="font-serif-display text-lg font-bold text-black">
-                  {t[`acompanho.card${n}.title`]}
-                </h3>
-                <Paragraphs
-                  text={t[`acompanho.card${n}.text`]}
-                  className="text-sm leading-relaxed text-accent-dark"
-                />
-              </div>
+                <span className="font-serif-display text-3xl text-accent">
+                  {String(n).padStart(2, "0")}
+                </span>
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-serif-display text-xl font-bold text-black">
+                    {t[`acompanho.card${n}.title`]}
+                  </h3>
+                  <Paragraphs
+                    text={t[`acompanho.card${n}.text`]}
+                    className="leading-relaxed text-muted-foreground"
+                  />
+                </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </Container>
       </section>
 
+      <GalleryStrip items={strips["faixa-4"]} layout="mosaic" />
+
       {/* Isso é pra você se */}
-      <section className="py-20 sm:py-28">
-        <Container className="flex flex-col gap-10">
+      <section className="py-14 sm:py-24">
+        <Container className="flex flex-col gap-12">
           <SectionHeading
             eyebrow={t["identifica.eyebrow"]}
             title={t["identifica.title"]}
             subtitle={t["identifica.subtitle"]}
           />
-          <div className="grid gap-4 sm:grid-cols-2">
+          <ul className="mx-auto flex w-full max-w-3xl flex-col">
             {paragraphs(t["identifica.items"]).map((text, i) => (
-              <div
+              <li
                 key={i}
-                className="flex gap-3 rounded-2xl border border-border bg-card p-5"
+                className="flex gap-4 border-t border-border py-5 first:border-t-0 first:pt-0"
               >
-                <span className="mt-1 text-accent">•</span>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {text}
-                </p>
-              </div>
+                <span className="mt-0.5 text-accent">✦</span>
+                <p className="leading-relaxed text-muted-foreground">{text}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         </Container>
       </section>
 
       {/* Destaques */}
-      <section className="py-20 sm:py-28">
+      <section className="py-14 sm:py-20">
         <Container>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {DESTAQUE_KEYS.map((n, i) => (
-              <div
-                key={n}
-                className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center"
-              >
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/15 text-accent-dark">
-                  {DESTAQUE_ICONS[i]}
-                </span>
-                <span className="font-serif-display text-2xl font-bold text-black">
+          <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-4">
+            {DESTAQUE_KEYS.map((n) => (
+              <div key={n} className="flex flex-col items-center gap-2 px-3 text-center">
+                <span className="font-serif-display text-2xl font-bold text-black sm:text-3xl">
                   {t[`destaque${n}.stat`]}
                 </span>
-                <span className="text-sm text-muted-foreground">
+                <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   {t[`destaque${n}.label`]}
                 </span>
               </div>
@@ -304,8 +284,10 @@ export default async function HomePage() {
         </Container>
       </section>
 
+      <GalleryStrip items={strips["faixa-5"]} layout="row" />
+
       {/* CTA final */}
-      <section className="relative overflow-hidden border-t border-border py-20 text-center text-white">
+      <section className="relative overflow-hidden py-24 text-center text-white sm:py-32">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={photos["cta-final"]}
@@ -316,7 +298,11 @@ export default async function HomePage() {
         <Container className="relative flex flex-col items-center gap-6">
           <h2 className="font-serif-display text-3xl sm:text-4xl">{t["cta.title"]}</h2>
           <Paragraphs text={t["cta.text"]} className="max-w-lg text-white/85" />
-          <ButtonLink href="/orcamento" variant="outline" className="border-white text-white hover:bg-white/10">
+          <ButtonLink
+            href="/orcamento"
+            variant="outline"
+            className="border-white text-white hover:bg-white/10"
+          >
             Solicitar orçamento
           </ButtonLink>
         </Container>

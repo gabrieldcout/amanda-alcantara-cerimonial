@@ -107,7 +107,8 @@ const TOPICS: Topic[] = [
   {
     title: "Fotos do site",
     items: [
-      "Troca as fotos fixas da página inicial: topo, Sobre mim, O meu compromisso, Sobre a minha assessoria e a chamada final.",
+      "Troca as fotos fixas da página inicial (topo, Sobre mim, O meu compromisso, Sobre a minha assessoria e a chamada final) e monta as 5 faixas de fotos entre as seções.",
+      "Nas faixas dá pra adicionar quantas fotos quiser (pode escolher várias de uma vez) e também vídeos do YouTube, Vimeo ou .mp4. Para tirar uma foto, clique em \"Tirar\" embaixo dela.",
       "Escolha a nova foto do celular ou computador e clique em \"Trocar foto\". Se não gostar, use \"Voltar para a foto original\".",
     ],
   },

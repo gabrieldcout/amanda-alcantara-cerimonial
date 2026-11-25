@@ -42,3 +42,126 @@ export async function getSitePhotos(): Promise<Record<SitePhotoSlot, string>> {
   }
   return result;
 }
+
+// Faixas de fotos entre as seções da home. Cada uma aceita quantas fotos (ou
+// vídeos) a Amanda quiser. Ficam na mesma tabela SitePhoto, com slot
+// "<faixa>:<timestamp>-<aleatório>", então não precisa de tabela nova.
+export const GALLERY_STRIPS = [
+  {
+    id: "faixa-1",
+    label: "Faixa 1 · logo abaixo do topo",
+    layout: "row",
+    defaults: [
+      "/fotos/larissa-e-fernando/beijo-arco.jpg",
+      "/fotos/bea-e-paulo/saida-petalas.jpg",
+      "/fotos/casal-1/votos-caverna.jpg",
+      "/fotos/portfolio/casamento-01.jpg",
+      "/fotos/larissa-e-fernando/aliancas.jpg",
+      "/fotos/bea-e-paulo/por-do-sol-abraco.jpg",
+      "/fotos/portfolio/casamento-02.jpg",
+      "/fotos/casal-1/maos-aliancas.jpg",
+    ],
+  },
+  {
+    id: "faixa-2",
+    label: "Faixa 2 · entre Sobre mim e O meu compromisso",
+    layout: "mosaic",
+    defaults: [
+      "/fotos/manual-noivos/casal-campo.jpg",
+      "/fotos/portfolio/casamento-03.jpg",
+      "/fotos/manual-noivos/buque-detalhe.jpg",
+      "/fotos/casal-1/caminhando.jpg",
+      "/fotos/portfolio/casamento-04.jpg",
+      "/fotos/manual-noivos/aneis-detalhe.jpg",
+      "/fotos/larissa-e-fernando/caminhando-praia.jpg",
+      "/fotos/portfolio/casamento-05.jpg",
+    ],
+  },
+  {
+    id: "faixa-3",
+    label: "Faixa 3 · depois de Sobre a minha assessoria",
+    layout: "row",
+    defaults: [
+      "/fotos/portfolio/casamento-06.jpg",
+      "/fotos/bea-e-paulo/cerimonia-beijo.jpg",
+      "/fotos/manual-noivos/casal-pb-beijo.jpg",
+      "/fotos/larissa-e-fernando/brinde-beijo.jpg",
+      "/fotos/portfolio/casamento-07.jpg",
+      "/fotos/casal-3/com-amanda-noite.jpg",
+      "/fotos/manual-noivos/convite-flatlay.jpg",
+      "/fotos/bea-e-paulo/caminhando-araucaria.jpg",
+    ],
+  },
+  {
+    id: "faixa-4",
+    label: "Faixa 4 · depois de Como te acompanho",
+    layout: "mosaic",
+    defaults: [
+      "/fotos/portfolio/casamento-08.jpg",
+      "/fotos/larissa-e-fernando/abraco-mar.jpg",
+      "/fotos/manual-noivos/casal-guardachuva.jpg",
+      "/fotos/sobre-mim/paisagem-recepcao.jpg",
+      "/fotos/portfolio/casamento-09.jpg",
+      "/fotos/casal-1/retrato-noiva.jpg",
+      "/fotos/bea-e-paulo/casal-rindo.jpg",
+      "/fotos/manual-noivos/casal-por-do-sol.jpg",
+    ],
+  },
+  {
+    id: "faixa-5",
+    label: "Faixa 5 · antes da chamada final",
+    layout: "row",
+    defaults: [
+      "/fotos/portfolio/casamento-10.jpg",
+      "/fotos/larissa-e-fernando/abraco-altar.jpg",
+      "/fotos/casal-1/beijo-caverna.jpg",
+      "/fotos/manual-noivos/casal-abraco.jpg",
+      "/fotos/amanda/direcionando.jpg",
+      "/fotos/cronograma/casal-noite-luzes.jpg",
+      "/fotos/inicio/nath-e-andre-1.jpeg",
+      "/fotos/inicio/nath-e-andre-2.jpeg",
+    ],
+  },
+] as const;
+
+export type GalleryStripId = (typeof GALLERY_STRIPS)[number]["id"];
+export type GalleryItem = { slot: string | null; url: string; isVideo: boolean };
+
+export function isGalleryStripId(value: string): value is GalleryStripId {
+  return GALLERY_STRIPS.some((s) => s.id === value);
+}
+
+export function stripOfSlot(slot: string): GalleryStripId | null {
+  const id = slot.split(":")[0];
+  return slot.includes(":") && isGalleryStripId(id) ? id : null;
+}
+
+export function isVideoUrl(url: string): boolean {
+  return !url.startsWith("/uploads/") && !url.startsWith("/fotos/");
+}
+
+// Sem nenhuma foto cadastrada numa faixa, mostra as fotos de exemplo.
+export async function getGalleryStrips(): Promise<Record<GalleryStripId, GalleryItem[]>> {
+  const result = Object.fromEntries(
+    GALLERY_STRIPS.map((s) => [
+      s.id,
+      s.defaults.map((url) => ({ slot: null, url, isVideo: false })),
+    ]),
+  ) as Record<GalleryStripId, GalleryItem[]>;
+  try {
+    const rows = await prisma.sitePhoto.findMany({
+      where: { slot: { contains: ":" } },
+      orderBy: { slot: "asc" },
+    });
+    const custom: Partial<Record<GalleryStripId, GalleryItem[]>> = {};
+    for (const row of rows) {
+      const id = stripOfSlot(row.slot);
+      if (!id) continue;
+      (custom[id] ??= []).push({ slot: row.slot, url: row.url, isVideo: isVideoUrl(row.url) });
+    }
+    Object.assign(result, custom);
+  } catch (error) {
+    console.error("SitePhoto indisponível, usando faixas padrão:", error);
+  }
+  return result;
+}

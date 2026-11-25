@@ -60,21 +60,25 @@ type PhotoInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type">;
 export function PhotoInput({ onChange, accept = "image/*", ...props }: PhotoInputProps) {
   async function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const input = event.currentTarget;
-    const file = input.files?.[0];
+    const files = Array.from(input.files ?? []);
     onChange?.(event);
-    if (!file) return;
+    if (files.length === 0) return;
 
-    // Bloqueia o envio do formulário enquanto a foto é processada.
-    input.setCustomValidity("Aguarde, preparando a foto...");
+    // Bloqueia o envio do formulário enquanto as fotos são processadas.
+    input.setCustomValidity(
+      files.length > 1 ? "Aguarde, preparando as fotos..." : "Aguarde, preparando a foto...",
+    );
     try {
-      const compressed = await compressImage(file);
-      if (compressed !== file) {
+      const compressed = await Promise.all(
+        files.map((file) => compressImage(file).catch(() => file)),
+      );
+      if (compressed.some((file, i) => file !== files[i])) {
         const transfer = new DataTransfer();
-        transfer.items.add(compressed);
+        for (const file of compressed) transfer.items.add(file);
         input.files = transfer.files;
       }
     } catch {
-      // Se o navegador não conseguir comprimir, segue com o arquivo original.
+      // Se o navegador não conseguir comprimir, segue com os arquivos originais.
     } finally {
       input.setCustomValidity("");
     }

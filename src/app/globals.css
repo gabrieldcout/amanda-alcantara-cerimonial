@@ -81,3 +81,39 @@ div.rich-text:focus {
   content: "\201D";
 }
 
+
+/* Faixa de fotos que desliza sozinha na home (conteúdo duplicado pra emendar). */
+@keyframes photo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.photo-marquee {
+  overflow: hidden;
+}
+
+.photo-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: photo-marquee var(--marquee-duration, 60s) linear infinite;
+}
+
+.photo-marquee:hover .photo-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-marquee {
+    overflow-x: auto;
+  }
+  .photo-marquee-track {
+    animation: none;
+  }
+  .photo-marquee-track > [aria-hidden="true"] {
+    display: none;
+  }
+}
