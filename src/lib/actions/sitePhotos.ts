@@ -86,9 +86,13 @@ export async function addGalleryVideo(stripId: string, formData: FormData) {
   revalidateGallery();
 }
 
-export async function removeGalleryItem(slot: string) {
+export async function removeGalleryItems(formData: FormData) {
   await requireAdmin();
-  if (!stripOfSlot(slot)) throw new Error("Foto inválida.");
-  await prisma.sitePhoto.deleteMany({ where: { slot } });
+  const slots = formData
+    .getAll("slots")
+    .map(String)
+    .filter((slot) => stripOfSlot(slot) !== null);
+  if (slots.length === 0) return;
+  await prisma.sitePhoto.deleteMany({ where: { slot: { in: slots } } });
   revalidateGallery();
 }

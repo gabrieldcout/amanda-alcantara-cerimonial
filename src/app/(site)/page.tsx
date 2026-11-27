@@ -104,27 +104,27 @@ export default async function HomePage() {
       )}
 
       {/* Sobre mim */}
-      <section className="py-14 sm:py-24">
+      <section className="py-10 sm:py-14">
         <Container className="max-w-7xl">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={photos["sobre-mim"]}
                 alt="Amanda Alcântara"
-                className="col-span-2 aspect-[4/5] w-full rounded-lg object-cover"
+                className="col-span-2 row-span-2 h-full w-full rounded-lg object-cover"
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={photos["sobre-mim-2"]}
                 alt="Amanda planejando um evento"
-                className="aspect-square w-full rounded-lg object-cover"
+                className="aspect-[3/4] w-full rounded-lg object-cover"
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={photos["sobre-mim-3"]}
                 alt="Amanda trabalhando"
-                className="aspect-square w-full rounded-lg object-cover"
+                className="aspect-[3/4] w-full rounded-lg object-cover"
               />
             </div>
             <div className="flex flex-col gap-5">
@@ -138,9 +138,9 @@ export default async function HomePage() {
       <GalleryStrip items={strips["faixa-2"]} layout="mosaic" />
 
       {/* O meu compromisso */}
-      <section className="py-14 sm:py-24">
+      <section className="py-10 sm:py-14">
         <Container className="max-w-7xl">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
             <div className="flex flex-col gap-5">
               <SectionHeading
                 eyebrow={t["compromisso.eyebrow"]}
@@ -187,7 +187,7 @@ export default async function HomePage() {
       </section>
 
       {/* Sobre a minha assessoria */}
-      <section className="py-14 sm:py-24">
+      <section className="py-10 sm:py-14">
         <Container className="flex max-w-7xl flex-col gap-10">
           <SectionHeading
             eyebrow={t["assessoria.eyebrow"]}
@@ -211,7 +211,7 @@ export default async function HomePage() {
       <GalleryStrip items={strips["faixa-3"]} layout="row" />
 
       {/* Como te acompanho */}
-      <section className="py-14 sm:py-24">
+      <section className="py-10 sm:py-14">
         <Container className="flex flex-col gap-12">
           <SectionHeading
             eyebrow={t["acompanho.eyebrow"]}
@@ -245,7 +245,7 @@ export default async function HomePage() {
       <GalleryStrip items={strips["faixa-4"]} layout="mosaic" />
 
       {/* Isso é pra você se */}
-      <section className="py-14 sm:py-24">
+      <section className="py-10 sm:py-14">
         <Container className="flex flex-col gap-12">
           <SectionHeading
             eyebrow={t["identifica.eyebrow"]}

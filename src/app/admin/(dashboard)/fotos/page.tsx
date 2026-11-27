@@ -2,13 +2,14 @@ import { GALLERY_STRIPS, SITE_PHOTO_SLOTS, getGalleryStrips, getSitePhotos } fro
 import {
   addGalleryPhotos,
   addGalleryVideo,
-  removeGalleryItem,
+  removeGalleryItems,
   resetSitePhoto,
   updateSitePhoto,
 } from "@/lib/actions/sitePhotos";
 import { Button } from "@/components/ui/Button";
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { PhotoInput } from "@/components/ui/PhotoInput";
+import { GalleryStripItems } from "@/components/admin/GalleryStripItems";
 
 export default async function AdminFotosPage() {
   const [photos, strips] = await Promise.all([getSitePhotos(), getGalleryStrips()]);
@@ -30,7 +31,8 @@ export default async function AdminFotosPage() {
           São as tiras de fotos entre os textos da página inicial. Dá pra escolher
           várias fotos de uma vez (umas 20 por envio) e enviar quantas vezes quiser.
           Enquanto uma faixa não tem fotos suas, aparecem fotos de exemplo; ao
-          enviar a primeira, elas continuam lá e você pode tirar uma por uma.
+          enviar a primeira, elas continuam lá. Para tirar, marque as fotos e clique em
+          &quot;Tirar fotos marcadas&quot;.
         </p>
       </div>
 
@@ -50,34 +52,7 @@ export default async function AdminFotosPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
-              {items.map((item, i) => (
-                <div key={item.slot ?? `${item.url}-${i}`} className="flex flex-col gap-1">
-                  {item.isVideo ? (
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex aspect-square w-full items-center justify-center rounded-lg bg-muted p-2 text-center text-xs text-accent underline"
-                    >
-                      Vídeo
-                    </a>
-                  ) : (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={item.url}
-                      alt=""
-                      className="aspect-square w-full rounded-lg object-cover"
-                    />
-                  )}
-                  {item.slot && (
-                    <form action={removeGalleryItem.bind(null, item.slot)}>
-                      <DeleteButton confirmText="Tirar esta foto da faixa?" label="Tirar" />
-                    </form>
-                  )}
-                </div>
-              ))}
-            </div>
+            <GalleryStripItems items={items} removeAction={removeGalleryItems} />
 
             <form
               action={addGalleryPhotos.bind(null, strip.id)}

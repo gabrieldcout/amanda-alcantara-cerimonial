@@ -15,7 +15,7 @@ export function GalleryStrip({
 
   if (layout === "mosaic") {
     return (
-      <section className="py-10 sm:py-14">
+      <section className="py-3 sm:py-4">
         <Container className="max-w-7xl">
           <div className="columns-2 gap-3 sm:columns-3 sm:gap-4 lg:columns-4">
             {items.map((item, i) => (
@@ -66,14 +66,14 @@ export function GalleryStrip({
   // Com vídeo não dá pra duplicar (tocaria dois players), então vira rolagem.
   if (hasVideo) {
     return (
-      <section className="py-10 sm:py-14">
+      <section className="py-3 sm:py-4">
         <div className="flex overflow-x-auto px-3 sm:px-4">{renderItems(false)}</div>
       </section>
     );
   }
 
   return (
-    <section className="py-10 sm:py-14">
+    <section className="py-3 sm:py-4">
       <div className="photo-marquee">
         <div
           className="photo-marquee-track"
